@@ -1,0 +1,11 @@
+{
+  "components": {
+    "stack-spread": {
+      "version": "1.0.0",
+      "installedAt": "2026-09-28T22:43:58.524Z",
+      "files": {
+        "src/components/effects/stack-spread/index.tsx": "sha256:b97554394bb1fdcdfa85ce7fee3013b5443b18bebfa65f1d240dfcf46541fe31"
+      }
+    }
+  }
+}

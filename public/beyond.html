@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beyond · Aditi Manish Joshi</title>
+<meta name="description" content="Illustrations and life outside product design: ink, colour pencil and iPad drawings, trekking, hiking and coffee.">
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Aditi Manish Joshi">
+<meta property="og:title" content="Beyond · Aditi Manish Joshi">
+<meta property="og:description" content="Illustrations and life outside product design: ink, colour pencil and iPad drawings, trekking, hiking and coffee.">
+<meta property="og:image" content="/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/case-studies/css/tokens.css">
+<link rel="stylesheet" href="/case-studies/css/case-study.css">
+<link rel="stylesheet" href="/case-studies/css/site-nav.css">
+<script>
+  // Use the light/dark choice saved on the homepage, else the system setting
+  (function () {
+    var t;
+    try { t = localStorage.getItem('portfolio-theme'); } catch (e) {}
+    if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.dataset.theme = t;
+    document.documentElement.style.colorScheme = t;
+  })();
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.classList.add('cs-reveal');
+    setTimeout(() => { if (!window.__csReveal) document.documentElement.classList.remove('cs-reveal'); }, 2500);
+  }
+</script>
+<link rel="stylesheet" href="/case-studies/css/reveal.css">
+<link rel="stylesheet" href="/beyond.css">
+</head>
+<body class="cs bx">
+  <main class="cs-main">
+    <header class="cs-hero">
+      <p class="cs-tag">Beyond</p>
+      <h1 class="cs-title">When I&apos;m not designing.</h1>
+    </header>
+
+    <section class="cs-section" id="illustrations">
+      <h2>Illustrations</h2>
+      <p class="bx-prompt">Some of my sketches in my book and on Procreate</p>
+      <div class="bx-collage" role="group" aria-label="Illustrations">
+        <figure class="bx-tile bx-tile--wide"><img src="/beyond/colour-pencil.jpg" alt="Portrait in orange and purple, colour pencil" loading="lazy" decoding="async"></figure>
+        <figure class="bx-tile"><img src="/beyond/cats-garden.jpg" alt="Girl with two cats in a garden, digital" loading="lazy" decoding="async"></figure>
+        <figure class="bx-tile"><img src="/beyond/swordsman.jpg" alt="Red swordsman with a ponytail" loading="lazy" decoding="async"></figure>
+        <figure class="bx-tile"><img src="/beyond/crosshatch-portrait.jpg" alt="Cross-hatched portrait, ink" loading="lazy" decoding="async"></figure>
+        <figure class="bx-tile"><img src="/beyond/angel.jpg" alt="Angel, sitting cross-legged, ink" loading="lazy" decoding="async"></figure>
+        <figure class="bx-tile bx-tile--wide"><img src="/beyond/procreate.jpg" alt="Character in a straw hat, ipad" loading="lazy" decoding="async"></figure>
+        <figure class="bx-tile bx-tile--wide"><img src="/beyond/horror.jpg" alt="Horror-style portrait, ink" loading="lazy" decoding="async"></figure>
+        <figure class="bx-tile bx-tile--wide"><img src="/beyond/ink-sketch.jpg" alt="Drawing on paper, ink" loading="lazy" decoding="async"></figure>
+      </div>
+    </section>
+
+    <section class="cs-section" id="off-screen">
+      <h2>Off the screen</h2>
+      <p>Trekking, hiking and coffee: where you&apos;ll find me when I&apos;m away from a screen.</p>
+      <div class="bx-trek" role="group" aria-label="Trekking and hiking photos">
+        <img class="bx-photo bx-photo--feature" src="/beyond/trek/lake.jpg" alt="A lake below a green hill, seen from a rocky slope" loading="lazy" decoding="async" style="object-position:50% 60%">
+        <img class="bx-photo bx-photo--wide" src="/beyond/trek/valley-panorama.jpg" alt="Panorama of a green valley below snow-streaked mountains" loading="lazy" decoding="async" style="object-position:50% 40%">
+        <img class="bx-photo" src="/beyond/trek/snow-slope.jpg" alt="Me in a red jacket below a snowy mountain slope" loading="lazy" decoding="async" style="object-position:50% 35%">
+        <img class="bx-photo" src="/beyond/trek/pine-boardwalk.jpg" alt="Me on a boardwalk path through a tall pine forest" loading="lazy" decoding="async" style="object-position:50% 60%">
+        <img class="bx-photo" src="/beyond/trek/night-sky.jpg" alt="Stars over a snow-patched slope at night" loading="lazy" decoding="async" style="object-position:50% 40%">
+        <img class="bx-photo bx-photo--wide" src="/beyond/trek/tent-camp.jpg" alt="Red tents at a camp below snowy mountains" loading="lazy" decoding="async" style="object-position:60% 50%">
+        <img class="bx-photo" src="/beyond/trek/forest-rock.jpg" alt="Me sitting cross-legged on a mossy rock on a forest trail" loading="lazy" decoding="async" style="object-position:50% 70%">
+        <img class="bx-photo bx-photo--wide" src="/beyond/trek/valley.jpg" alt="Me in front of a forested mountain valley" loading="lazy" decoding="async" style="object-position:50% 45%">
+        <img class="bx-photo" src="/beyond/trek/meadow-trail.jpg" alt="Hikers on a trail through a green valley below snowy peaks" loading="lazy" decoding="async" style="object-position:30% 50%">
+        <img class="bx-photo" src="/beyond/trek/rock-path.jpg" alt="A forest path under an overhanging rock" loading="lazy" decoding="async" style="object-position:50% 60%">
+      </div>
+    </section>
+  </main>
+
+  <site-footer></site-footer>
+
+  <script src="/site-footer.js"></script>
+  <script src="/case-studies/js/site.js"></script>
+  <script src="/case-studies/js/site-nav.js"></script>
+  <script src="/case-studies/js/reveal.js"></script>
+</body>
+</html>

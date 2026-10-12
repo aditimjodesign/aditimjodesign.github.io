@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scaling an Enterprise Banking Platform · Aditi Manish Joshi</title>
+<meta name="description" content="Extending a corporate banking platform built for 300+ employee enterprises to companies with 100 employees or fewer.">
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Aditi Manish Joshi">
+<meta property="og:title" content="Scaling an Enterprise Banking Platform · Aditi Manish Joshi">
+<meta property="og:description" content="Extending a corporate banking platform built for 300+ employee enterprises to companies with 100 employees or fewer.">
+<meta property="og:image" content="/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/case-study.css">
+<link rel="stylesheet" href="css/mockups.css">
+<style>
+  .cs {
+    --glow-1: 210 90% 70% / .8;
+    --glow-2: 190 70% 80% / .7;
+    --glow-3: 160 40% 85% / .6;
+    --glow-4: 230 70% 85% / .8;
+    --glow-5: 200 80% 78% / .9;
+  }
+</style>
+<link rel="stylesheet" href="css/site-nav.css">
+<script>
+  // Use the light/dark choice saved on the homepage, else the system setting,
+  // before first paint so the page never flashes the wrong theme.
+  (function () {
+    var t;
+    try { t = localStorage.getItem('portfolio-theme'); } catch (e) {}
+    if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.dataset.theme = t;
+    document.documentElement.style.colorScheme = t;
+  })();
+</script>
+<link rel="stylesheet" href="css/reveal.css">
+<script>
+  // Hide reveal targets before first paint, unless motion is reduced.
+  // If reveal.js never runs, show everything after 2.5s.
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.classList.add('cs-reveal');
+    setTimeout(() => { if (!window.__csReveal) document.documentElement.classList.remove('cs-reveal'); }, 2500);
+  }
+</script>
+</head>
+<body class="cs" data-project="fintech-platform">
+
+  <main class="cs-main">
+    <header class="cs-hero">
+      <p class="cs-tag">B2B Fintech · Corporate banking</p>
+      <h1 class="cs-title">Scaling an enterprise banking platform to a new segment.</h1>
+
+      <dl class="cs-tldr" aria-label="Summary">
+        <div><dt>Problem</dt><dd>A role structure built for 300+ employee enterprises forces friction on companies of 100 employees or fewer.</dd></div>
+        <div><dt>My role</dt><dd>UX designer. Ran the stakeholder research and turned it into the interaction model.</dd></div>
+        <div><dt>Result</dt><dd>A hybrid onboarding: automatic role capture for small companies, explicit role selection for enterprises. The stakeholders confirmed it fit how their client organisations work.</dd></div>
+      </dl>
+
+      <figure class="cs-media cs-cover cs-cover--device">
+        <div class="cs-cover__glow" aria-hidden="true"></div>
+        <img src="images/fintech-dashboard.webp" srcset="images/fintech-dashboard-sm.webp 579w, images/fintech-dashboard.webp 1159w" sizes="(max-width: 700px) calc(100vw - 32px), 1100px" width="1159" height="915" fetchpriority="high" data-fig="fintech-dashboard">
+      </figure>
+      <p class="cs-caption">Screens recreated. The original work is under NDA.</p>
+
+      <dl class="cs-meta">
+        <div><dt>Role</dt><dd>UX Designer</dd><dd>Ran stakeholder research</dd></div>
+        <div><dt>Team</dt><dd>2–3 designers, a PM,</dd><dd>business analysts, engineering</dd></div>
+        <div><dt>Timeline</dt><dd>6 months</dd><dd>Shipped early 2024</dd></div>
+        <div><dt>Client</dt><dd>Corporate banking platform provider</dd><dd>Anonymised under NDA</dd></div>
+      </dl>
+    </header>
+
+    <section class="cs-section" id="overview" data-nav="Overview">
+      <h2>One person. Three roles. One afternoon.</h2>
+      <p>A finance manager at a company with under 100 employees logs into a banking platform built for enterprises with 300+. Before she can see anything, it asks her to choose a role: author, reviewer or approver. This afternoon, she's all three.</p>
+
+      <figure class="cs-media">
+        <div class="ui ui--narrow">
+          <p class="ui-title">Choose your role</p>
+          <p class="ui-text">Select a role to continue. You can switch roles from your profile.</p>
+          <div class="role-cards">
+            <span class="role-card"><b>Author</b><small>Draft payments and requests</small></span>
+            <span class="role-card is-on"><b>Reviewer</b><small>Check and return drafts</small></span>
+            <span class="role-card"><b>Approver</b><small>Give final sign-off</small></span>
+          </div>
+          <button class="ui-btn" type="button" tabindex="-1">Continue</button>
+        </div>
+      <figcaption>The existing login: every user picks one role before seeing anything.</figcaption>
+      </figure>
+    </section>
+
+    <section class="cs-section" id="problem" data-nav="Problem">
+      <h2>Enterprise role separation, forced on a small team.</h2>
+      <p>The platform assumed the front office, mid office and back office were different people. An author drafts, a separate reviewer approves, and a back-office team tracks the life cycle. At a company of 100 or fewer, those roles fall to the same two or three people. Forcing enterprise role separation on them meant friction at onboarding, extra navigation, and dashboards showing every role's tasks at once.</p>
+      <figure class="cs-media">
+        <div class="scale" role="img" aria-label="A large circle labelled MNC beside a much smaller circle labelled 100 employees or fewer.">
+          <span class="scale__circle scale__circle--big"><span>MNC<small>300+ employees</small></span></span>
+          <span class="scale__circle scale__circle--small">≤100</span>
+        </div>
+      <figcaption>One platform, two very different scales of organisation.</figcaption>
+      </figure>
+      <p>Stakeholders described the same pattern across their client organisations: small-business finance staff stretched thin between running the business and managing its money.</p>
+
+      <h3 class="cs-sub">Where the pattern came from</h3>
+      <p>We ran stakeholder sessions where we mapped who in a 300+ employee company did each task, then asked who does the same work at 100 employees or fewer. My job was turning that into an interaction model we could ship.</p>
+      <figure class="cs-media">
+        <div class="matrix">
+          <div class="matrix__head" aria-hidden="true"><span></span><span>In charge</span><span>Author</span><span>Reviewer and approver</span></div>
+          <div class="matrix__row">
+            <h4>Front office</h4>
+            <div data-label="In charge">Deal management</div>
+            <div data-label="Author">Contract negotiation</div>
+            <div data-label="Reviewer and approver">Reviews and approves contracts negotiated by the author</div>
+          </div>
+          <div class="matrix__row">
+            <h4>Mid office</h4>
+            <div data-label="In charge">Risk management</div>
+            <div data-label="Author">Defines policies:<ul><li>Limit policy</li><li>Approval policy</li><li>Exception policy</li></ul></div>
+            <div data-label="Reviewer and approver">Reviews and approves the policies defined, and exception approvals</div>
+          </div>
+          <div class="matrix__row">
+            <h4>Back office</h4>
+            <div data-label="In charge">Life cycle management</div>
+            <div data-label="Author">Initiates and tracks the life cycle across parameters</div>
+            <div data-label="Reviewer and approver">Reviews and approves life cycle events</div>
+          </div>
+          <div class="dark-card">
+            <h4>Business management</h4>
+            <ul>
+              <li>Effective and efficient business management</li>
+              <li>What-if analysis</li>
+              <li>Risk management: FX, interest rate, equity, liquidity and operational risk</li>
+              <li>Portfolio management: channel, product and investment mix</li>
+              <li>Cost management</li>
+              <li>Visibility and visualisation of the banking relationship</li>
+              <li>Forecasting, such as cash flow</li>
+            </ul>
+          </div>
+        </div>
+      <figcaption>How a 300+ employee company splits the work: three offices, each with its own person in charge, author and reviewer, plus business management above them. At 100 employees or fewer, the same two or three people cover all of it.</figcaption>
+      </figure>
+    </section>
+
+    <section class="cs-section" id="trade-off" data-nav="Trade-off">
+      <h2>How much role structure should the interface impose?</h2>
+      <p>The design team explored three low-fidelity flow concepts. Each answered that question differently.</p>
+
+      <figure class="cs-media">
+        <div class="concepts">
+          <div class="concept is-picked">
+            <span class="concept__num">Concept 1</span>
+            <p class="concept__name">Explicit selection</p>
+            <ol class="lofi-steps"><li>Log in</li><li class="is-key">Pick a role</li><li>Role landing page</li><li>Dashboard</li></ol>
+            <ul class="proscons"><li class="pro">Clearest</li><li class="con">Most friction</li></ul>
+            <p class="concept__verdict">Kept for enterprises</p>
+          </div>
+          <div class="concept is-picked">
+            <span class="concept__num">Concept 2</span>
+            <p class="concept__name">Automatic capture</p>
+            <ol class="lofi-steps"><li>Log in</li><li class="is-key">Role inferred from profile</li><li>Dashboard is the landing page</li></ol>
+            <ul class="proscons"><li class="pro">Least friction</li><li class="con">Unclear when one person holds several roles</li></ul>
+            <p class="concept__verdict">Used for 100 or fewer</p>
+          </div>
+          <div class="concept is-dropped">
+            <span class="concept__num">Concept 3</span>
+            <p class="concept__name">Task-first landing</p>
+            <ol class="lofi-steps"><li>Log in</li><li class="is-key">Role-specific tasks</li><li>Task pages</li><li>Dashboard</li></ol>
+            <ul class="proscons"><li class="pro">Efficient with one role</li><li class="con">Noisy with several</li></ul>
+            <p class="concept__verdict">Not taken forward</p>
+          </div>
+        </div>
+      <figcaption>The three low-fidelity concepts, and what happened to each.</figcaption>
+      </figure>
+
+      <h3 class="cs-sub">Arguing against the cheap option</h3>
+      <p>The cheap option was to ship Concept 1 everywhere: one onboarding flow that reused the existing enterprise logic. I argued against it because it put friction at the point where adoption mattered most: the first time a small company's finance manager opens the platform.</p>
+      <p>I proposed a hybrid instead. Companies with 100 employees or fewer get Concept 2's automatic role capture, and enterprises keep Concept 1's explicit selection. Concept 3 worked well for finding tasks but didn't solve the role-ambiguity problem, so we didn't take it forward.</p>
+
+      <figure class="cs-media">
+        <div class="branch">
+          <div class="branch__start">Organisation profile<small>team size</small></div>
+          <div class="branch__path">
+            <span class="branch__when">100 employees or fewer</span>
+            <span class="branch__step branch__step--skip">Pick a role</span>
+            <span class="branch__arrow">→</span>
+            <span class="branch__step">Platform configures itself</span>
+            <span class="branch__arrow">→</span>
+            <span class="branch__step">Combined dashboard</span>
+          </div>
+          <div class="branch__path">
+            <span class="branch__when">300+ employees</span>
+            <span class="branch__step">Pick a role</span>
+            <span class="branch__arrow">→</span>
+            <span class="branch__step">Role landing page</span>
+            <span class="branch__arrow">→</span>
+            <span class="branch__step">Role dashboard</span>
+          </div>
+        </div>
+      <figcaption>The hybrid: two onboarding paths, chosen by the organisation's size.</figcaption>
+      </figure>
+
+      <p>The hybrid meant two onboarding paths instead of one, which brought more conditional logic to spec and harder QA across both flows. We also had to change how the legacy role-based permissions worked, because they assumed role selection came before everything else.</p>
+
+      <h3 class="cs-sub">What I cut</h3>
+      <p>An early direction let business managers on the enterprise side reassign tasks freely across roles, instead of using a fixed two-path split. I scoped it down to the two-path hybrid. The legacy permissions couldn't support reassigning roles on the fly within six months, and the fixed split solved the SME problem in scope without that rebuild.</p>
+    </section>
+
+    <section class="cs-section" id="design" data-nav="Design">
+      <h2>A working surface that fits the person, not the org chart.</h2>
+
+      <h3 class="cs-sub">Hybrid onboarding</h3>
+      <p>Small companies skip role selection, and the platform configures itself from the organisation's profile and team size. Enterprises keep explicit role selection, along with the role separation they often need for compliance.</p>
+
+      <h3 class="cs-sub">Adaptive dashboard widgets</h3>
+      <p>Widget density changes with the company profile, so someone holding several roles doesn't see every role's tasks at once.</p>
+      <div class="cs-grid-2">
+        <figure class="cs-media">
+          <div class="ui">
+            <div class="tiles">
+              <span class="tile tile--wide"><small>Waiting on you</small><b>6 tasks</b></span>
+              <span class="tile"><small>Balance</small><b>€84,120</b></span>
+              <span class="tile"><small>Next payroll</small><b>28 Feb</b></span>
+            </div>
+            <p class="ui-caption">100 or fewer: fewer, combined widgets</p>
+          </div>
+        </figure>
+        <figure class="cs-media">
+          <div class="ui">
+            <div class="tiles tiles--dense">
+              <span class="tile"><small>Drafts</small><b>14</b></span>
+              <span class="tile"><small>In review</small><b>9</b></span>
+              <span class="tile"><small>To approve</small><b>5</b></span>
+              <span class="tile"><small>Rejected</small><b>2</b></span>
+              <span class="tile"><small>Scheduled</small><b>31</b></span>
+              <span class="tile"><small>Limits</small><b>78%</b></span>
+            </div>
+            <p class="ui-caption">300+: full, role-specific widgets</p>
+          </div>
+        </figure>
+      </div>
+
+      <h3 class="cs-sub">Configurable quick links, landing page and FAQs</h3>
+      <p>Users build their own "I want to" shortcuts. One person holding three roles gets a working surface that fits them, instead of a role-based menu.</p>
+      <p>Each organisation can switch landing-page sections and FAQs on or off. Small companies see less irrelevant content, and enterprise users keep what they need.</p>
+
+      <ol class="cs-features">
+        <li class="cs-feature">
+          <span class="cs-feature__num">1</span>
+          <h3 class="cs-feature__title">Customise quick links <span>to fit each user</span></h3>
+          <img src="images/fintech-quick-links.webp" width="556" height="458" loading="lazy" decoding="async" data-fig="fintech-quick-links">
+        </li>
+        <li class="cs-feature">
+          <span class="cs-feature__num">2</span>
+          <h3 class="cs-feature__title">Easy to find, <span>categorised FAQs</span></h3>
+          <img src="images/fintech-faqs.webp" width="556" height="446" loading="lazy" decoding="async" data-fig="fintech-faqs">
+        </li>
+        <li class="cs-feature">
+          <span class="cs-feature__num">3</span>
+          <h3 class="cs-feature__title">Make the dashboard <span>fit your taste</span></h3>
+          <img src="images/fintech-landing-customise.webp" width="556" height="455" loading="lazy" decoding="async" data-fig="fintech-landing-customise">
+        </li>
+      </ol>
+    </section>
+
+    <section class="cs-section" id="constraints" data-nav="Constraints">
+      <h2>Designing inside an enterprise banking system.</h2>
+      <ul>
+        <li>Legacy technology limited how far we could restructure flows, and we adjusted several concepts to fit what the existing architecture could support.</li>
+        <li>Data protection rules limited which data could appear together on one dashboard view. That shaped the widget design and what an overview could contain.</li>
+        <li>Information density was the constant tension: an overview useful to someone holding several roles risks overloading them. I relied on cognitive-load principles from my MSc in HCI to make grouping and progressive-disclosure decisions, instead of deciding by taste.</li>
+        <li>Accessibility was handled informally, through contrast and readability checks on dashboard components. There was no formal WCAG audit.</li>
+      </ul>
+    </section>
+
+    <section class="cs-section" id="validation" data-nav="Validation">
+      <h2>How we validated it.</h2>
+      <p>We ran moderated walkthroughs with the client's 3 stakeholders, comparing the three concepts against the current platform for navigation friction, clarity of role handling and fit across company sizes. The stakeholders confirmed the hybrid matched how their client organisations work.</p>
+      <p>We had no direct access to end users at this stage, so there was no end-user testing or quantitative split test.</p>
+    </section>
+
+    <section class="cs-section" id="reflection" data-nav="Reflection">
+      <h2>By the numbers, and what I'd do differently.</h2>
+      <div class="cs-stats">
+        <div><b>6</b><span>months, the project duration agreed with the client</span></div>
+        <div><b>3</b><span>stakeholders, 2 to 3 rounds each: the source of every requirement and end-user pain point passed on to us</span></div>
+        <div><b>300k+</b><span>users on the existing enterprise platform. This is the platform's scale, not a result of this redesign.</span></div>
+      </div>
+
+      <h3 class="cs-sub">What I'd do differently</h3>
+      <p>I'd push to watch one SME user who holds all three roles complete a real task, from drafting through review to approval, in a single sitting. Instead, we relied on stakeholders' descriptions of that moment. The whole hybrid rests on that assumption, and no real user holding all three roles ever tested it.</p>
+      <p>I'd also schedule a formal accessibility audit earlier, because informal contrast checks are least reliable on data-dense financial screens like these.</p>
+    </section>
+  </main>
+
+  <script src="/site-footer.js"></script>
+  <script src="js/site.js"></script>
+  <script src="js/figures.js"></script>
+  <script src="js/case-study.js"></script>
+  <script src="js/lightbox.js"></script>
+  <script src="js/site-nav.js"></script>
+  <script src="js/reveal.js"></script>
+</body>
+</html>

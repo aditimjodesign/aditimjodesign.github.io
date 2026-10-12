@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bulk Travel Passes for Organisations · Aditi Manish Joshi</title>
+<meta name="description" content="Bulk purchasing and distribution of travel passes for universities, kiosks and retailers on a public transit network.">
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Aditi Manish Joshi">
+<meta property="og:title" content="Bulk Travel Passes for Organisations · Aditi Manish Joshi">
+<meta property="og:description" content="Bulk purchasing and distribution of travel passes for universities, kiosks and retailers on a public transit network.">
+<meta property="og:image" content="/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/case-study.css">
+<link rel="stylesheet" href="css/site-nav.css">
+<script>
+  // Use the light/dark choice saved on the homepage, else the system setting,
+  // before first paint so the page never flashes the wrong theme.
+  (function () {
+    var t;
+    try { t = localStorage.getItem('portfolio-theme'); } catch (e) {}
+    if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.dataset.theme = t;
+    document.documentElement.style.colorScheme = t;
+  })();
+</script>
+<link rel="stylesheet" href="css/reveal.css">
+<script>
+  // Hide reveal targets before first paint, unless motion is reduced.
+  // If reveal.js never runs, show everything after 2.5s.
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.classList.add('cs-reveal');
+    setTimeout(() => { if (!window.__csReveal) document.documentElement.classList.remove('cs-reveal'); }, 2500);
+  }
+</script>
+</head>
+<body class="cs" data-project="transit-passes">
+
+  <main class="cs-main">
+    <header class="cs-hero">
+      <p class="cs-tag">B2B · Public transit</p>
+      <h1 class="cs-title">Bulk purchasing and distribution of travel passes for a public transit network.</h1>
+
+      <dl class="cs-tldr" aria-label="Summary">
+        <div><dt>Problem</dt><dd>A fare system built for individual commuters had no way to serve organisations that buy passes in bulk.</dd></div>
+        <div><dt>My role</dt><dd>Owned the B2B track, from the research workshops to the final UI.</dd></div>
+        <div><dt>Result</dt><dd>Three platform pillars (overview dashboard, ready-made and customisable passes, fraud-aware distribution) designed into a B2B platform. It was still in development when my engagement ended.</dd></div>
+      </dl>
+
+      <figure class="cs-media cs-cover cs-cover--device cs-cover--screen">
+        <div class="cs-cover__glow" aria-hidden="true"></div>
+        <img src="images/transit-dashboard.webp" srcset="images/transit-dashboard-sm.webp 624w, images/transit-dashboard.webp 1249w" sizes="(max-width: 700px) calc(100vw - 32px), 1100px" width="1249" height="838" fetchpriority="high" data-fig="transit-dashboard-cover">
+      </figure>
+
+      <dl class="cs-meta">
+        <div><dt>Role</dt><dd>Owned the B2B track,</dd><dd>research workshops to final UI</dd></div>
+        <div><dt>Team</dt><dd>4+ designers, onshore and offshore,</dd><dd>a product team, client stakeholders</dd></div>
+        <div><dt>Timeline</dt><dd>4 months</dd><dd>Still in development when I left</dd></div>
+        <div><dt>Client</dt><dd>Public transit agency in Canada</dd><dd>Anonymised as a courtesy</dd></div>
+      </dl>
+    </header>
+
+    <section class="cs-section" id="overview" data-nav="Overview">
+      <h2>One fare system, two very different bulk buyers.</h2>
+      <p>A university's finance office might need, say, a batch of travel passes for an incoming class, each with a discount and an expiry date. A kiosk at a tourist stop might need to sell a single pass in seconds. The fare system behind millions of individual commuters' journeys had no path for either.</p>
+      <p>The wider programme also covered the consumer app. I owned the B2B track, and I wasn't there for launch: the platform was still in development when my engagement ended.</p>
+    </section>
+
+    <section class="cs-section" id="problem" data-nav="Problem">
+      <h2>Needs that pull in different directions.</h2>
+      <p>Universities, kiosks and tourist retailers were buying passes in bulk through processes never designed for that volume. A university wants fine control over discounts, cohort rules and expiry. A kiosk wants ready-made products and a fast checkout. One catalogue had to serve both.</p>
+      <p>Student passes also had to be distributable without becoming either a fraud risk or a way to watch students.</p>
+      <p>The agency's public-sector status added another constraint: a formal WCAG accessibility requirement that applied to every component choice from the start.</p>
+    </section>
+
+    <section class="cs-section" id="research" data-nav="Research">
+      <h2>How the research became decisions.</h2>
+      <p>We ran three remote workshops with travellers, retailers, client stakeholders and the product and design teams. I co-facilitated them, and the design team did the synthesis together. The sessions included structured brainstorming, idea prioritisation and fraud-scenario exercises.</p>
+      <p>We grouped the outputs into themes with affinity clustering, then mapped them by importance and feasibility with participants in the room. The product team agreed the final themes with us. Three priorities came out of it and became the platform's pillars.</p>
+
+      <figure class="cs-media cs-media--wide cs-media--bleed">
+        <img src="images/transit-workshop-board.webp" srcset="images/transit-workshop-board-sm.webp 921w, images/transit-workshop-board.webp 1842w" sizes="(max-width: 700px) calc(100vw - 32px), 1100px" width="1842" height="788" loading="lazy" decoding="async" data-fig="transit-workshop-board">
+      <figcaption>The workshop board: needs clustered by user group, trends, importance and feasibility mapping in two breakout rooms, and fraud scenarios. Client details blurred.</figcaption>
+      </figure>
+
+      <ol class="cs-features">
+        <li class="cs-feature">
+          <span class="cs-feature__num">1</span>
+          <h3 class="cs-feature__title">Overview <span>dashboard</span></h3>
+          <p class="cs-feature__text">Activity and order status across the account, in one place.</p>
+        </li>
+        <li class="cs-feature">
+          <span class="cs-feature__num">2</span>
+          <h3 class="cs-feature__title">Ready-made and <span>customisable passes</span></h3>
+          <p class="cs-feature__text">A catalogue with ready-made passes for speed and customisable ones for control.</p>
+        </li>
+        <li class="cs-feature">
+          <span class="cs-feature__num">3</span>
+          <h3 class="cs-feature__title">Fraud-aware, <span>private distribution</span></h3>
+          <p class="cs-feature__text">Transparent distribution of student passes that respects their privacy.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="cs-section" id="design" data-nav="Design">
+      <h2>Turning the pillars into a B2B platform.</h2>
+      <p>That was my part of the work. Other designers owned the consumer app and the other tracks.</p>
+      <p>I made two decisions before designing any screens. First, I reused the client's existing design language. That kept the B2B platform consistent with the consumer system, sped up development and testing, and gave us a head start on accessibility, because the component library already had compliance work behind it. Second, wherever more than one interaction pattern could solve a problem, I chose the accessible one.</p>
+
+      <h3 class="cs-sub">Catalogue and search</h3>
+      <p>Ready-made and customisable pass products, with advanced filters and inventory checks. A kiosk can sell quickly, and a university keeps its discount and cohort control.</p>
+      <figure class="cs-media cs-media--wide cs-media--bleed">
+        <img src="images/transit-catalogue.webp" srcset="images/transit-catalogue-sm.webp 960w, images/transit-catalogue.webp 1920w" sizes="(max-width: 700px) calc(100vw - 32px), 1100px" width="1920" height="1080" loading="lazy" decoding="async" data-fig="transit-catalogue">
+      <figcaption>Based on the client's existing design language, which made it quick to develop for testing.</figcaption>
+      </figure>
+
+      <h3 class="cs-sub">Bulk payment</h3>
+      <p>The catalogue's checkout, built for organisational order sizes, so an organisation can buy many passes in one order instead of one at a time.</p>
+      <figure class="cs-media cs-media--wide">
+        <img src="images/transit-cart.webp" width="872" height="496" loading="lazy" decoding="async" data-fig="transit-cart">
+        <figcaption>The cart applies volume discounts per pass type.</figcaption>
+      </figure>
+      <figure class="cs-media cs-media--wide">
+        <img src="images/transit-checkout.webp" width="871" height="496" loading="lazy" decoding="async" data-fig="transit-checkout">
+        <figcaption>At checkout, a buyer can pay directly or send a payment request to whoever holds the budget.</figcaption>
+      </figure>
+      <figure class="cs-media cs-media--wide">
+        <img src="images/transit-payment-request.webp" width="868" height="496" loading="lazy" decoding="async" data-fig="transit-payment-request">
+        <figcaption>With "Payment request" selected, the buyer sends the payment request, with amount and due date, to the person who holds the budget.</figcaption>
+      </figure>
+
+      <h3 class="cs-sub">Distribution and status tracking</h3>
+      <p>The organisation issues passes to recipients and follows each one's status, without having to ask anyone.</p>
+      <figure class="cs-media cs-media--wide">
+        <img src="images/transit-orders.webp" width="812" height="461" loading="lazy" decoding="async" data-fig="transit-orders">
+        <figcaption>Purchased e-tickets by pass type, above the orders waiting to be distributed.</figcaption>
+      </figure>
+      <figure class="cs-media cs-media--wide">
+        <img src="images/transit-order-details.webp" width="812" height="461" loading="lazy" decoding="async" data-fig="transit-order-details">
+        <figcaption>Distributing an order's passes from a CSV.</figcaption>
+      </figure>
+      <figure class="cs-media cs-media--wide">
+        <img src="images/transit-distribution.webp" width="814" height="550" loading="lazy" decoding="async" data-fig="transit-distribution">
+        <figcaption>The distribution list, where every issued pass shows its status.</figcaption>
+      </figure>
+
+      <h3 class="cs-sub">Overview dashboard</h3>
+      <p>Activity and order status across the account, in one place: what's pending, delivered or flagged.</p>
+      <figure class="cs-media cs-media--wide">
+        <img src="images/transit-dashboard.webp" srcset="images/transit-dashboard-sm.webp 624w, images/transit-dashboard.webp 1249w" sizes="(max-width: 700px) calc(100vw - 32px), 1100px" width="1249" height="838" loading="lazy" decoding="async" data-fig="transit-dashboard">
+        <figcaption>The overview dashboard: inventory, users, order tracking, revenue and forecast on one screen.</figcaption>
+      </figure>
+    </section>
+
+    <section class="cs-section" id="trade-off" data-nav="Trade-off">
+      <h2>Transparency for the organisation, not surveillance of students.</h2>
+      <p>Discounted student passes invite misuse, such as passes resold or handed to people who don't qualify. The blunt answer is to track every pass's use. It's the strongest fraud control and the simplest to specify. It also turns a travel pass into a tool for watching students, which a university would have good reason to refuse.</p>
+      <p>I designed for transparency at the organisation level instead, using three measures:</p>
+      <ul>
+        <li>verification when each pass is issued</li>
+        <li>a status and audit trail showing where every issued pass stands</li>
+        <li>limits on how student passes can move after issue</li>
+      </ul>
+      <p>Together they make misuse detectable without monitoring anyone's travel. The cost is precision. Checks at issue and visible patterns catch some misuse later than constant monitoring would, and some not at all. I based these measures on the workshop fraud scenarios, because we had no real incident data.</p>
+    </section>
+
+    <section class="cs-section" id="validation" data-nav="Validation">
+      <h2>How we validated it.</h2>
+      <p>Travellers and retailers took part in the discovery workshops, and I reviewed the designs with client stakeholders throughout the workshop cycle. That's more direct access than my banking case study had, where all research went through stakeholders.</p>
+      <p>Even so, the people who validated the work aren't all the people who will use it. No university administrator or front-line kiosk staff member was observed completing a task. That's a gap in who tested the design, and it matters as much as any untested flow.</p>
+    </section>
+
+    <section class="cs-section" id="reflection" data-nav="Reflection">
+      <h2>By the numbers, and what I'd do differently.</h2>
+      <div class="cs-stats">
+        <div><b>4</b><span>months, the project duration</span></div>
+        <div><b>3</b><span>remote workshops, co-facilitated with travellers, retailers, stakeholders and the product and design teams</span></div>
+        <div><b>3</b><span>pillars, the result of clustering and prioritisation during the workshops</span></div>
+      </div>
+
+      <h3 class="cs-sub">What I'd do differently</h3>
+      <p>I'd run task-based usability testing of the distribution flow with university administrators and kiosk staff. It's the riskiest and newest part of the design, and the people who will use it every day never tested it.</p>
+      <p>I'd also check the fraud measures against real incident data after the platform's first quarter live.</p>
+    </section>
+  </main>
+
+  <script src="/site-footer.js"></script>
+  <script src="js/site.js"></script>
+  <script src="js/figures.js"></script>
+  <script src="js/case-study.js"></script>
+  <script src="js/lightbox.js"></script>
+  <script src="js/site-nav.js"></script>
+  <script src="js/reveal.js"></script>
+</body>
+</html>

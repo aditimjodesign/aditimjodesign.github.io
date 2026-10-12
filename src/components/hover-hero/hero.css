@@ -1,0 +1,287 @@
+/* Hover-reveal hero section. Everything is scoped to .hx-hero. */
+:root .hx-hero, .hx-hero {
+  --bg: #0a0a0a;
+  --fg: #ffffff;
+  --muted: #8c8c8c;
+  --accent: #4d7cfe;
+  --icon: #9b9b9b;
+  --spring: cubic-bezier(.34, 1.56, .64, 1);
+  --btn-bg: #121212;
+  --btn-bg-hover: #1c1c1c;
+  --btn-border: rgba(255,255,255,.07);
+  --shadow: rgba(0,0,0,.45);
+  /* character illustrations */
+  --char-line: #8e8e97;      /* faint light gray limbs on dark */
+  --char-line-on: #1b1530;   /* lines drawn over purple/blue/white */
+  --char-purple: #8a52cc;
+  --char-blue: #4f78e8;
+  --char-paper: #ffffff;
+}
+:root[data-theme="light"] .hx-hero {
+  --bg: #f6f5f2; --fg: #111113; --muted: #8b8b8f; --accent: #3a66f0; --icon: #6e6e74;
+  --btn-bg: #ffffff; --btn-bg-hover: #efefec; --btn-border: rgba(0,0,0,.09); --shadow: rgba(0,0,0,.14);
+  --char-line: #3d3d44;      /* dark gray limbs on light */
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .hx-hero {
+    --bg: #f6f5f2; --fg: #111113; --muted: #8b8b8f; --accent: #3a66f0; --icon: #6e6e74;
+    --btn-bg: #ffffff; --btn-bg-hover: #efefec; --btn-border: rgba(0,0,0,.09); --shadow: rgba(0,0,0,.14);
+    --char-line: #3d3d44;
+  }
+}
+
+.hx-hero, .hx-hero * { box-sizing: border-box; }
+.hx-hero h1, .hx-hero p { margin: 0; }
+.hx-hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: Inter, system-ui, sans-serif;
+  font-feature-settings: "cv11", "ss01";
+  -webkit-font-smoothing: antialiased;
+}
+
+.hx-stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  padding: 0 16px;
+  width: 100%;
+}
+
+.hx-title {
+  position: relative;
+  z-index: 2;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-align: center;
+  width: 100%;
+  max-width: 1080px;
+  text-wrap: balance;
+}
+
+.hx-trigger {
+  color: var(--fg);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: .18em;
+  cursor: default;
+  white-space: nowrap;
+  transition: color .25s ease;
+}
+.hx-trigger.hx-is-active { color: var(--accent); }
+
+.hx-btn {
+  position: relative;
+  z-index: 2;
+  font: 500 13px/1 Inter, sans-serif;
+  color: var(--fg);
+  text-decoration: none;
+  background: var(--btn-bg);
+  border: 1px solid var(--btn-border);
+  border-radius: 12px;
+  height: 29px;
+  padding: 0 12px;
+  display: inline-flex;
+  align-items: center;
+  transition: background .2s, transform .2s;
+}
+.hx-btn:hover { background: var(--btn-bg-hover); }
+.hx-btn:active { transform: scale(.97); }
+
+/* Email and résumé buttons: taller than the original pill so they're easy to tap */
+.hx-actions {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+.hx-actions .hx-btn {
+  height: 44px;
+  min-width: 44px;
+  padding: 0 14px;
+  gap: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.hx-icon {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+.hx-email .hx-icon--done { display: none; }
+.hx-email.hx-is-copied .hx-icon--copy { display: none; }
+.hx-email.hx-is-copied .hx-icon--done { display: block; color: var(--accent); }
+.hx-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.hx-resume[aria-disabled="true"] { opacity: .5; cursor: not-allowed; }
+.hx-resume[aria-disabled="true"]:hover { background: var(--btn-bg); }
+.hx-copy-status {
+  position: relative;
+  z-index: 2;
+  min-height: 20px;
+  font: 400 14px/20px Inter, sans-serif;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* Floating items: all anchored at the stage's center, moved via CSS vars */
+.hx-layer {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+.hx-item {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  transform:
+    translate(-50%, -50%)
+    translate(var(--ox, 0px), var(--oy, 0px))
+    scale(.2)
+    rotate(0deg);
+  transition:
+    transform .35s ease-in,
+    opacity .2s ease-in;
+}
+.hx-layer.hx-is-active .hx-item {
+  opacity: 1;
+  transform:
+    translate(-50%, -50%)
+    translate(var(--tx), var(--ty))
+    scale(1)
+    rotate(var(--r, 0deg));
+  transition:
+    transform .6s var(--spring) var(--d, 0s),
+    opacity .25s ease-out var(--d, 0s);
+}
+
+/* ---------- Plugins: gradient app tiles ---------- */
+.hx-tile {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.35),
+    inset 0 -2px 4px rgba(0,0,0,.15),
+    0 6px 16px var(--shadow);
+}
+.hx-tile svg { width: 20px; height: 20px; }
+/* Picture icons from Aditi's sheet, shown bare. In dark mode a thin light halo
+   keeps their dark outlines visible against the dark background. */
+.hx-pic { display: block; }
+.hx-pic img {
+  display: block;
+  width: 46px;
+  height: 46px;
+  max-width: none; /* host resets (e.g. Tailwind's img max-width:100%) would shrink it to 0 */
+  filter: drop-shadow(0 6px 10px var(--shadow));
+}
+:root[data-theme="dark"] .hx-pic img {
+  filter: drop-shadow(0 0 1px rgba(255,255,255,.9)) drop-shadow(0 0 1px rgba(255,255,255,.6));
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .hx-pic img {
+    filter: drop-shadow(0 0 1px rgba(255,255,255,.9)) drop-shadow(0 0 1px rgba(255,255,255,.6));
+  }
+}
+@media (max-width: 640px) {
+  .hx-pic img { width: 36px; height: 36px; }
+}
+.hx-t1 { background: linear-gradient(145deg, #fff3f6, #f7c9d6); }
+.hx-t2 { background: linear-gradient(135deg, #ff6b6b, #ffb347 30%, #7bdc6b 55%, #4fa3ff 75%, #a26bff); padding: 3px; }
+.hx-t2 > div { width: 100%; height: 100%; border-radius: 7px; background: #6d4cff; display: grid; place-items: center; }
+.hx-t3 { background: linear-gradient(145deg, #ffb35c, #ff4fa0 55%, #8a5cff); }
+.hx-t4 { background: linear-gradient(160deg, #3c86ff, #1f5cf0); }
+.hx-t5 { background: linear-gradient(150deg, #a777ff, #6d3cf0); }
+.hx-t6 { background: linear-gradient(140deg, #ffe066, #6ee29b 50%, #4fb3ff); }
+
+/* ---------- Icon sets: stroke icons ---------- */
+.hx-glyph svg {
+  width: 22px;
+  height: 22px;
+  stroke: var(--icon);
+  stroke-width: 1.6;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  display: block;
+}
+
+/* ---------- Something new: illustrated characters ---------- */
+.hx-char svg { height: calc(var(--h) * .58px); width: auto; display: block; overflow: visible; }
+.hx-char .hx-ink { fill: var(--char-line); }
+.hx-char .hx-ink-on { fill: var(--char-line-on); }
+.hx-char .hx-purple { fill: var(--char-purple); }
+.hx-char .hx-blue { fill: var(--char-blue); }
+.hx-char .hx-paper { fill: var(--char-paper); }
+@media (max-width: 640px) { .hx-char svg { height: calc(var(--h) * .4px); } }
+
+/* ---------- Illustrate: artwork cards ---------- */
+.hx-art img {
+  display: block;
+  height: 92px;
+  width: auto;
+  max-width: none; /* host resets (e.g. Tailwind's img max-width:100%) would collapse it */
+  border: 3px solid #fff;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 10px 22px var(--shadow);
+}
+@media (max-width: 640px) { .hx-art img { height: 62px; border-width: 2px; } }
+
+@media (max-width: 640px) {
+  .hx-title { max-width: 360px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hx-item, .hx-layer.hx-is-active .hx-item { transition: opacity .2s; }
+}
+
+.hx-trigger:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
+
+/* Résumé is the primary action: solid, in the foreground colour */
+.hx-btn--solid {
+  background: var(--fg);
+  border-color: var(--fg);
+  color: var(--bg);
+}
+.hx-btn--solid:hover { background: var(--fg); opacity: .86; }
+.hx-btn--solid[aria-disabled="true"] { opacity: .5; cursor: not-allowed; }
+.hx-btn--solid[aria-disabled="true"]:hover { opacity: .5; }
+
+/* One small line above the headline: who this is, and what they do */
+.hx-kicker {
+  position: relative;
+  z-index: 2;
+  margin: 0 0 18px;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+  text-align: center;
+  color: var(--fg);
+}

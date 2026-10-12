@@ -1,0 +1,17 @@
+{
+  "description": "Aditi Manish Joshi is a product designer and HCI researcher in Dublin, working on enterprise products and human-centred AI. Case studies, illustration and more.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  },
+  "title": "Aditi Manish Joshi – Product Designer, Dublin",
+  "icons": {
+    "icon": "/favicon.png"
+  },
+  "openGraph": {
+    "image": "/og-image.png"
+  }
+}

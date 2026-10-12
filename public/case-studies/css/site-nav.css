@@ -1,0 +1,253 @@
+/* Dock navigation and light/dark switch shared with the homepage
+   (js/site-nav.js). Colours mirror the homepage's Petal values. */
+
+.cs {
+  --dock-border: #e9ecee;
+  --dock-bg: rgb(255 255 255 / 72%);
+  --dock-fill: rgb(8 11 12 / 6%);
+  --dock-icon: #546e7a;
+  --dock-hover: #f4f5f7;
+  --dock-text: #080b0c;
+}
+
+:root[data-theme="dark"] .cs {
+  --dock-border: #2e373c;
+  --dock-bg: rgb(22 28 31 / 78%);
+  --dock-fill: rgb(255 255 255 / 8%);
+  --dock-icon: #b0bec5;
+  --dock-hover: #161c1f;
+  --dock-text: #fff;
+}
+
+/* Same place as on the homepage: centred at the top, scrolling with the page */
+.cs-dock-bar {
+  position: absolute;
+  z-index: 20;
+  top: 46px;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.cs-dock {
+  display: flex;
+  height: 60px;
+  padding: 8px;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--dock-border);
+  border-radius: 16px;
+  background: var(--dock-fill);
+  box-shadow: 0 8px 30px rgb(17 17 17 / 8%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  letter-spacing: 0;
+  pointer-events: auto;
+}
+
+.cs-dock__icon {
+  position: relative;
+  display: flex;
+  width: var(--dock-size);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  color: var(--dock-icon);
+  background: transparent;
+  transition: width 150ms ease-out;
+}
+
+.cs-dock__icon a,
+.cs-dock__icon button {
+  padding: 0;
+  border: 0;
+  color: inherit;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  border-radius: inherit;
+  transition: color 160ms ease, background-color 160ms ease;
+}
+
+.cs-dock__icon a:hover,
+.cs-dock__icon a:focus-visible,
+.cs-dock__icon button:hover,
+.cs-dock__icon button:focus-visible {
+  color: var(--dock-text);
+  background: color-mix(in srgb, var(--dock-text) 10%, transparent);
+}
+
+.cs-dock__icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.cs-dock__label {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  padding: 5px 9px;
+  border: 1px solid var(--dock-border);
+  border-radius: 7px;
+  color: var(--dock-text);
+  background: var(--dock-bg);
+  box-shadow: 0 8px 20px rgb(17 17 17 / 10%);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -4px);
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+
+.cs-dock__icon a:hover .cs-dock__label,
+.cs-dock__icon a:focus-visible .cs-dock__label,
+.cs-dock__icon button:hover .cs-dock__label,
+.cs-dock__icon button:focus-visible .cs-dock__label {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* On phones the dock sits at the bottom of the screen, like the homepage */
+@media (max-width: 760px) {
+  .cs-dock-bar {
+    position: fixed;
+    top: auto;
+    bottom: max(16px, env(safe-area-inset-bottom));
+  }
+
+  .cs-dock__label { top: auto; bottom: calc(100% + 10px); }
+
+  /* the dock has moved to the bottom, so the hero no longer needs to clear it */
+  .cs-hero { padding-top: 88px; }
+
+  .cs-footer { padding-bottom: 120px; }
+}
+
+/* Privacy and Terms links at the bottom of the footer */
+.cs-footer__legal {
+  display: flex;
+  margin: 20px 0 0;
+  justify-content: center;
+  gap: 8px;
+  font-size: 13px;
+  color: hsl(var(--cs-quiet));
+}
+
+.cs-footer__legal a:hover { color: hsl(var(--cs-ink)); }
+
+/* Footer contact icons (email, LinkedIn), each a comfortable tap target */
+.cs-footer__icon {
+  display: inline-grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border-radius: 10px;
+  transition: background-color 160ms ease;
+}
+
+.cs-footer__icon:hover,
+.cs-footer__icon:focus-visible {
+  background: hsl(var(--cs-panel));
+  opacity: 1 !important;
+  outline: none;
+}
+
+.cs-footer__icon svg { width: 22px; height: 22px; }
+
+/* The "a" mark, on the same row as the dock and centred on its line. It's a mask
+   of /logo-a.png filled with the text colour, so it turns white on the dark
+   theme. Scrolls away with the page, like the dock. */
+.site-logo {
+  position: absolute;
+  z-index: 20;
+  top: 46px;
+  left: 24px;
+  display: grid;
+  width: 60px;
+  height: 60px;
+  place-items: center;
+  color: hsl(var(--cs-ink));
+  letter-spacing: 0;
+}
+
+.site-logo__mark {
+  display: block;
+  width: 34px;
+  height: 34px;
+  background: currentColor;
+  -webkit-mask: url("/logo-a.png") center / contain no-repeat;
+  mask: url("/logo-a.png") center / contain no-repeat;
+}
+
+.site-logo__mark { transition: opacity 160ms ease; }
+
+.site-logo:hover .site-logo__mark { opacity: .6; }
+
+.site-logo:focus-visible {
+  outline: 2px solid #f783ac;
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+.site-logo__label {
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 10px);
+  padding: 5px 9px;
+  border: 1px solid var(--dock-border);
+  border-radius: 7px;
+  color: var(--dock-text);
+  background: var(--dock-bg);
+  box-shadow: 0 8px 20px rgb(17 17 17 / 10%);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-4px, -50%);
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+
+.site-logo:hover .site-logo__label,
+.site-logo:focus-visible .site-logo__label {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+
+@media (max-width: 760px) {
+  /* the dock moves to the bottom on phones, so the mark sits alone at the top */
+  .site-logo {
+    top: 16px;
+    left: 16px;
+    width: 48px;
+    height: 48px;
+  }
+
+  .site-logo__mark { width: 30px; height: 30px; }
+}
+
+/* Keyboard focus ring on every interactive control of the static pages */
+.cs :is(a, button, summary, [tabindex]:not([tabindex="-1"])):focus-visible {
+  outline: 2px solid hsl(var(--cs-ink));
+  outline-offset: 3px;
+}
+.cs-lb__btn:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
+.cs-footer__legal a { display: inline-block; padding: 12px 6px; margin: -12px -6px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cs *, .cs *::before, .cs *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+  html { scroll-behavior: auto; }
+}

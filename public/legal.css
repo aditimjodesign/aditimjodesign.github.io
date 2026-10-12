@@ -1,0 +1,6 @@
+/* Privacy and Terms pages: the case study layout without the case study furniture */
+.cs-legal .cs-section { padding-top: 56px; }
+.cs-legal .cs-section h2 { font-size: 22px; }
+.cs-legal .cs-section p a,
+.cs-legal .cs-section p code { color: hsl(var(--cs-ink)); }
+.cs-legal .cs-section p a { text-decoration: underline; text-underline-offset: 3px; }

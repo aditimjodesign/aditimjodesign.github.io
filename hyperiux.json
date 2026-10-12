@@ -1,0 +1,20 @@
+{
+  "$schema": "https://vault.hyperiux.com/schema.json",
+  "framework": "react",
+  "router": null,
+  "tailwind": {
+    "config": null,
+    "css": "src/index.css"
+  },
+  "aliases": {
+    "components": "@/components",
+    "effects": "@/components/effects",
+    "hooks": "@/hooks",
+    "lib": "@/lib"
+  },
+  "installedEffects": {
+    "stack-spread": {
+      "installedAt": "2026-09-28T22:43:58.525Z"
+    }
+  }
+}

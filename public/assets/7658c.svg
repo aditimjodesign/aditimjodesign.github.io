@@ -1,0 +1,38 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="804" height="820" viewBox="0 0 804 820" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 6" opacity="0.5">
+<g id="Ellipse 1" filter="url(#filter0_f_0_6)">
+<circle cx="553" cy="402" r="151" fill="#D9214C" fill-opacity="0.8"/>
+</g>
+<g id="Ellipse 2" filter="url(#filter1_f_0_6)">
+<circle cx="402" cy="251" r="151" fill="#FA925E" fill-opacity="0.8"/>
+</g>
+<g id="Ellipse 3" filter="url(#filter2_f_0_6)">
+<circle cx="251" cy="402" r="151" fill="#B8DC8E" fill-opacity="0.8"/>
+</g>
+<g id="Ellipse 4" filter="url(#filter3_f_0_6)">
+<circle cx="421" cy="569" r="151" fill="#7349D6" fill-opacity="0.8"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_f_0_6" x="302" y="151" width="502" height="502" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="50" result="effect1_foregroundBlur_0_6"/>
+</filter>
+<filter id="filter1_f_0_6" x="151" y="0" width="502" height="502" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="50" result="effect1_foregroundBlur_0_6"/>
+</filter>
+<filter id="filter2_f_0_6" x="0" y="151" width="502" height="502" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="50" result="effect1_foregroundBlur_0_6"/>
+</filter>
+<filter id="filter3_f_0_6" x="170" y="318" width="502" height="502" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="50" result="effect1_foregroundBlur_0_6"/>
+</filter>
+</defs>
+</svg>

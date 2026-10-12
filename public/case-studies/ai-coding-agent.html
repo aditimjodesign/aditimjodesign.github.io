@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enterprise AI Coding Agent · Aditi Manish Joshi</title>
+<meta name="description" content="MSc HCI capstone with IBM: interviews with designers, developers and content designers turned into design frameworks for an enterprise AI coding agent.">
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Aditi Manish Joshi">
+<meta property="og:title" content="Enterprise AI Coding Agent · Aditi Manish Joshi">
+<meta property="og:description" content="MSc HCI capstone with IBM: interviews with designers, developers and content designers turned into design frameworks for an enterprise AI coding agent.">
+<meta property="og:image" content="/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/case-study.css">
+<link rel="stylesheet" href="css/mockups.css">
+<link rel="stylesheet" href="css/site-nav.css">
+<script>
+  // Use the light/dark choice saved on the homepage, else the system setting,
+  // before first paint so the page never flashes the wrong theme.
+  (function () {
+    var t;
+    try { t = localStorage.getItem('portfolio-theme'); } catch (e) {}
+    if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.dataset.theme = t;
+    document.documentElement.style.colorScheme = t;
+  })();
+</script>
+<link rel="stylesheet" href="css/reveal.css">
+<script>
+  // Hide reveal targets before first paint, unless motion is reduced.
+  // If reveal.js never runs, show everything after 2.5s.
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.classList.add('cs-reveal');
+    setTimeout(() => { if (!window.__csReveal) document.documentElement.classList.remove('cs-reveal'); }, 2500);
+  }
+</script>
+</head>
+<body class="cs" data-project="ai-coding-agent">
+
+
+  <main class="cs-main">
+    <header class="cs-hero">
+      <p class="cs-tag">IBM · UX Research</p>
+      <h1 class="cs-title">Making an enterprise AI coding agent understandable.</h1>
+
+      <dl class="cs-tldr" aria-label="Summary">
+        <div><dt>Problem</dt><dd>Teams knew the agent hallucinated, varied between runs and hid its reasoning, but had no design language for any of it.</dd></div>
+        <div><dt>My role</dt><dd>Ran and analysed the interviews with UX designers, developers and content designers, as researcher and designer.</dd></div>
+        <div><dt>Result</dt><dd>Three reusable frameworks for designing around an AI agent that isn't always right, built from themes found in all three disciplines.</dd></div>
+      </dl>
+
+      <figure class="cs-media cs-cover--plain">
+        <img src="images/ibm-hero-laptop.webp" width="570" height="327" fetchpriority="high" data-fig="ibm-hero-laptop">
+      </figure>
+
+      <dl class="cs-meta">
+        <div><dt>Role</dt><dd>UX Researcher &amp; Designer</dd><dd>Interviews, thematic analysis, SWOT</dd></div>
+        <div><dt>Team</dt><dd>4 people</dd></div>
+        <div><dt>Timeline</dt><dd>5 months</dd><dd>2026</dd></div>
+        <div><dt>Client</dt><dd>IBM</dd><dd>MSc HCI capstone, UCD</dd></div>
+      </dl>
+    </header>
+
+    <section class="cs-section" id="overview" data-nav="Overview">
+      <h2>Turning AI's rough edges into problems design can work on.</h2>
+      <p>AI coding agents can plan and write code across a whole repository, but they don't always behave the same way twice. They can state a guess as fact, give different plans for the same prompt, and keep their reasoning hidden. In enterprise teams, those rough edges decide whether people trust the tool or quietly stop using it.</p>
+      <p>For my MSc HCI capstone at UCD, in partnership with IBM, I looked at how the people who build these products experience those failure modes, and how design could respond to them.</p>
+    </section>
+
+    <section class="cs-section" id="challenge" data-nav="Challenge">
+      <h2>Known problems with no design language.</h2>
+      <p>Teams already knew the agent hallucinated, varied between runs and hid its reasoning. Those issues were usually treated as model-quality problems for engineering, not as experience problems design could shape. That left designers without shared vocabulary or patterns for when the agent was uncertain, inconsistent or opaque.</p>
+    </section>
+
+    <section class="cs-section" id="approach" data-nav="Approach">
+      <h2>Listening across three disciplines.</h2>
+      <p>I ran semi-structured interviews with UX designers, developers and content designers. Each group meets the agent at a different point: designers shape the experience, developers depend on the output, and content designers write the words that explain it.</p>
+      <p>I coded the transcripts with thematic analysis, mapped the themes into a SWOT, and then turned the strongest tensions into evidence-based How Might We statements to explore in workshops with IBM UX.</p>
+    </section>
+
+    <section class="cs-section" id="research" data-nav="Research">
+      <h2>Separating what users struggle with from what the model does.</h2>
+      <p>The analysis kept user problems apart from model behaviour, so each theme could become a direction specific enough to prototype.</p>
+
+      <h3 class="cs-sub">Thematic analysis</h3>
+      <p>Four themes came up across all three disciplines. Each one became a How Might We statement for the workshops with IBM UX.</p>
+
+      <figure class="cs-media">
+        <div class="ui ui--board">
+          <div class="board-col">
+            <p class="board-col__head"><span class="tag tag--finance">Hallucination</span></p>
+            <div class="note">“It sounds just as sure when it’s wrong.”</div>
+            <div class="note">Uncertain output is presented as fact</div>
+            <div class="note note--hmw">HMW show how sure the agent is, without slowing people down?</div>
+          </div>
+          <div class="board-col">
+            <p class="board-col__head"><span class="tag tag--info">Non-determinism</span></p>
+            <div class="note">Same prompt, different plan</div>
+            <div class="note">“I can’t reproduce what it did yesterday.”</div>
+            <div class="note note--hmw">HMW make variation visible and comparable?</div>
+          </div>
+          <div class="board-col">
+            <p class="board-col__head"><span class="tag tag--privacy">Opacity</span></p>
+            <div class="note">Reasoning stays hidden</div>
+            <div class="note">Users can’t tell why a file was changed</div>
+            <div class="note note--hmw">HMW let users inspect the agent’s reasoning when they need to?</div>
+          </div>
+          <div class="board-col">
+            <p class="board-col__head"><span class="tag tag--ai">Trust</span></p>
+            <div class="note">Too much and too little trust in suggestions</div>
+            <div class="note">Needs differ by role</div>
+            <div class="note note--hmw">HMW calibrate trust to each role?</div>
+          </div>
+        </div>
+      </figure>
+
+      <h3 class="cs-sub">From themes to features</h3>
+      <p>Each theme went through the same three steps: anchor it to what participants said, split it into specific moments, then test every feature against a precise complaint before it reached the workshop.</p>
+      <figure class="cs-media cs-media--proc" data-no-zoom>
+        <div class="proc" data-process>
+          <p class="proc__title">From Themes to Features: The Design Process</p>
+          <p class="proc__sub">Each feature set was derived through a structured process:</p>
+          <ol class="proc__steps">
+          <li class="proc__step is-active" style="--tone:#b9b2e3">
+            <button class="proc__node" type="button" id="proc-node-1" aria-expanded="true" aria-controls="proc-body-1"><b>Anchor in theme</b><span>Reframed as an HMW</span></button>
+            <span class="proc__link" aria-hidden="true"></span>
+            <div class="proc__body" id="proc-body-1" role="region" aria-labelledby="proc-node-1"><div><p class="proc__h">Anchor in theme</p><p>Confidence-Aware Transparency and AI-Generated Code Attribution both trace to Human Oversight Safeguards Enterprise Trust (PS2, PS11); Agentic Reasoning Transparency traces to the same theme but targets AI’s process rather than its output; Contextual Onboarding Assistant traces to AI as an Enterprise Knowledge Partner (PS1, PS9).</p></div></div>
+          </li>
+          <li class="proc__step" style="--tone:#b7e3b3">
+            <button class="proc__node" type="button" id="proc-node-2" aria-expanded="false" aria-controls="proc-body-2"><b>Decompose</b><span>Sub Problem to Pattern</span></button>
+            <span class="proc__link" aria-hidden="true"></span>
+            <div class="proc__body" id="proc-body-2" role="region" aria-labelledby="proc-node-2"><div><p class="proc__h">Decompose</p><p>Each HMW split into the specific moments a pain point surfaces like Confidence-Aware Transparency alone became four features (confidence badge, source attribution toggle, review checklist panel, honest refusal state) rather than one generic “trust indicator,” each mapped to a pattern enterprise users already recognise (a gutter mark and PR summary, borrowed from version control, for AI-Generated Code Attribution).</p></div></div>
+          </li>
+          <li class="proc__step" style="--tone:#e3c4ad">
+            <button class="proc__node" type="button" id="proc-node-3" aria-expanded="false" aria-controls="proc-body-3"><b>Stress Test</b><span>Evidence + Workshop</span></button>
+            <div class="proc__body" id="proc-body-3" role="region" aria-labelledby="proc-node-3"><div><p class="proc__h">Stress Test</p><p>Every feature was checked against a specific precise complaint like the Tiered Permission Dial answers PS2’s “nothing touches production without going through a human in the loop” then prioritised into core versus secondary before being validated with IBM stakeholders in the Workshop.</p></div></div>
+          </li>
+          </ol>
+          <div class="proc__controls">
+            <button class="proc__btn" type="button" data-proc="prev">Previous step</button>
+            <p class="proc__count" aria-live="polite">Step 1 of 3</p>
+            <button class="proc__btn" type="button" data-proc="next">Next step</button>
+          </div>
+        </div>
+      </figure>
+    </section>
+
+    <section class="cs-section" id="design-solutions" data-nav="Design Solutions">
+      <h2>Three frameworks any team can reuse.</h2>
+      <p>I didn't design one-off screens. I turned the HMWs into three frameworks that any team building on the agent can apply. Each one makes the agent's behaviour easier to read without asking users to understand the model underneath.</p>
+
+      <h3 class="cs-sub">Confidence scoring</h3>
+      <p>Every suggestion shows how sure the agent is and what that rating is based on, so people know where to look closely.</p>
+      <figure class="cs-media">
+        <div class="ui ui--wide">
+          <p class="ui-label">Suggestions <span class="ui-label__right">Sorted by confidence ↓</span></p>
+          <div class="ui-row"><span class="ui-av ui-av--g">✓</span><span class="ui-row__main"><b>Add null check to parseUser()</b><small>Matches 12 similar fixes in this repo</small></span><span class="meter"><span style="width:92%"></span></span><span class="badge badge--green">92%</span></div>
+          <div class="ui-row"><span class="ui-av ui-av--a">!</span><span class="ui-row__main"><b>Switch to async file reader</b><small>Docs found, no usage in this codebase</small></span><span class="meter meter--amber"><span style="width:64%"></span></span><span class="badge badge--amber">64%</span></div>
+          <div class="ui-row"><span class="ui-av ui-av--r">?</span><span class="ui-row__main"><b>Call legacyAuth.refresh()</b><small>Method not found. May be hallucinated</small></span><span class="meter meter--red"><span style="width:21%"></span></span><span class="badge badge--red">21%</span></div>
+        </div>
+      </figure>
+      <figure class="cs-media">
+        <img src="images/ibm-confidence-badge.webp" width="1474" height="810" loading="lazy" decoding="async" data-fig="ibm-confidence-badge">
+      </figure>
+      <p class="cs-caption">The same pattern in the prototype: a badge on every block, a source note on hover, and publishing blocked until flagged items are reviewed.</p>
+
+      <h3 class="cs-sub">Agentic transparency layer</h3>
+      <p>The agent's steps can be opened when someone wants to know why it acted, and stay out of the way when they don't.</p>
+      <figure class="cs-media">
+        <div class="ui ui--narrow">
+          <p class="ui-label">Why the agent did this</p>
+          <ol class="trace">
+            <li class="is-done"><b>Read the issue</b><small>“Login fails after token expiry”</small></li>
+            <li class="is-done"><b>Searched the codebase</b><small>Found 3 call sites for refreshToken()</small></li>
+            <li class="is-done"><b>Considered 2 approaches</b><small>Chose retry with backoff over a silent refresh</small></li>
+            <li><b>Waiting for your approval</b><small>Diff ready · 2 files</small></li>
+          </ol>
+        </div>
+      </figure>
+
+      <h3 class="cs-sub">Contextual onboarding assistant</h3>
+      <p>A first-run assistant that orients someone inside a new codebase: a short welcome, a map of services and modules, the patterns that differ from convention, and a readiness check before the first task. It can be skipped at any point.</p>
+      <figure class="cs-media cs-media--corner cs-media--compact">
+        <img src="images/ibm-onboarding-tablet.webp" width="656" height="455" loading="lazy" decoding="async" data-fig="ibm-onboarding-tablet">
+      </figure>
+      <p class="cs-caption">Language and IDE: Python and VS Code. Framework: Vanilla JS, bundled with Next.js. Hosted via OpenAI Sites.</p>
+      <figure class="cs-media cs-media--compact">
+        <img src="images/ibm-onboarding-flow.webp" width="1535" height="1024" loading="lazy" decoding="async" data-fig="ibm-onboarding-flow">
+      </figure>
+      <p class="cs-caption">First-run flow: orientation, a codebase map, key patterns and setup steps, which can be skipped at any point.</p>
+    </section>
+
+    <section class="cs-section" id="outcome" data-nav="Outcome">
+      <h2>Designing for a system that isn't always right.</h2>
+      <p>Most interfaces assume the system is correct. AI agents break that assumption, so the design job moves from hiding complexity to showing the right amount of it at the right moment: how confident the agent is, why it acted, and what the user should check.</p>
+      <p>Talking to three disciplines was what made the difference. Developers, designers and content designers described the same failures in different words. Mapping those differences is what turned vague worries about AI trust into frameworks a team can build and test.</p>
+    </section>
+
+  </main>
+
+
+  <script src="/site-footer.js"></script>
+  <script src="js/site.js"></script>
+  <script src="js/figures.js"></script>
+  <script src="js/case-study.js"></script>
+  <script src="js/process.js"></script>
+  <script src="js/lightbox.js"></script>
+  <script src="js/site-nav.js"></script>
+  <script src="js/reveal.js"></script>
+</body>
+</html>

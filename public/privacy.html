@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy · Aditi Manish Joshi</title>
+<meta name="description" content="How this portfolio handles data: no accounts, no analytics, only your theme choice saved in your browser and fonts from Google Fonts.">
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Aditi Manish Joshi">
+<meta property="og:title" content="Privacy · Aditi Manish Joshi">
+<meta property="og:description" content="How this portfolio handles data: no accounts, no analytics, only your theme choice saved in your browser and fonts from Google Fonts.">
+<meta property="og:image" content="/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="/case-studies/css/tokens.css">
+<link rel="stylesheet" href="/case-studies/css/case-study.css">
+<link rel="stylesheet" href="/case-studies/css/site-nav.css">
+<link rel="stylesheet" href="/legal.css">
+<script>
+  // Use the light/dark choice saved on the homepage, else the system setting
+  (function () {
+    var t;
+    try { t = localStorage.getItem('portfolio-theme'); } catch (e) {}
+    if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.dataset.theme = t;
+    document.documentElement.style.colorScheme = t;
+  })();
+</script>
+</head>
+<body class="cs cs-legal">
+  <main class="cs-main">
+    <header class="cs-hero">
+      <p class="cs-tag">Last updated 7 October 2026</p>
+      <h1 class="cs-title">Privacy</h1>
+    </header>
+    <section class="cs-section">
+      <h2>The short version</h2>
+      <p>This is my personal portfolio. It has no sign-up, no contact forms, no analytics, no ads and no tracking cookies. I don&apos;t collect personal information about you.</p>
+    </section>
+
+    <section class="cs-section">
+      <h2>What your browser stores</h2>
+      <p>When you switch between light and dark mode, your choice is saved in your browser&apos;s local storage under the name <code>portfolio-theme</code>, so the next page opens in the same mode. It stays on your device and is never sent to me. Clearing this site&apos;s data in your browser removes it.</p>
+    </section>
+
+    <section class="cs-section">
+      <h2>Fonts from Google</h2>
+      <p>The fonts on this site load from Google Fonts. To fetch them, your browser contacts Google&apos;s servers, which receive your IP address and basic browser details as part of that request. Google handles that information under its own <a href="https://policies.google.com/privacy" rel="noopener" target="_blank">privacy policy</a>.</p>
+    </section>
+
+    <section class="cs-section">
+      <h2>Hosting</h2>
+      <p>The service that hosts this site may keep standard server logs, such as the IP address that made a request, the page requested and the time. These logs are kept by the host for security and reliability, and I don&apos;t use them to identify visitors.</p>
+    </section>
+
+    <section class="cs-section">
+      <h2>Links to other sites</h2>
+      <p>Links to sites such as LinkedIn take you outside this portfolio. Those sites have their own privacy policies.</p>
+    </section>
+
+    <section class="cs-section">
+      <h2>Your rights</h2>
+      <p>Because I don&apos;t collect personal information, there is usually nothing for me to access, correct or delete. If you have a question about your data or this policy, email <a href="mailto:aditimjo@gmail.com">aditimjo@gmail.com</a>.</p>
+    </section>
+
+    <section class="cs-section">
+      <h2>Changes</h2>
+      <p>If anything here changes, for example if I add analytics, I&apos;ll update this page and the date at the top.</p>
+    </section>
+  </main>
+
+  <site-footer></site-footer>
+
+  <script src="/site-footer.js"></script>
+  <script src="/case-studies/js/site.js"></script>
+  <script src="/case-studies/js/site-nav.js"></script>
+</body>
+</html>

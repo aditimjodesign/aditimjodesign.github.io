@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case studies · Aditi Manish Joshi</title>
+<meta name="description" content="Case studies by Aditi Manish Joshi: an enterprise AI coding agent, a corporate banking platform and bulk travel passes for organisations.">
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Aditi Manish Joshi">
+<meta property="og:title" content="Case studies · Aditi Manish Joshi">
+<meta property="og:description" content="Case studies by Aditi Manish Joshi: an enterprise AI coding agent, a corporate banking platform and bulk travel passes for organisations.">
+<meta property="og:image" content="/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/case-study.css">
+<style>
+  .cs-index { list-style: none; margin: 40px 0 0; padding: 0; border-top: 1px solid hsl(var(--cs-line)); }
+  .cs-index a { display: flex; justify-content: space-between; gap: 16px; padding: 20px 0; border-bottom: 1px solid hsl(var(--cs-line)); font-size: 18px; }
+  .cs-index a:hover { opacity: .6; }
+  .cs-index span { color: hsl(var(--cs-quiet)); }
+</style>
+<link rel="stylesheet" href="css/site-nav.css">
+<script>
+  // Use the light/dark choice saved on the homepage, else the system setting,
+  // before first paint so the page never flashes the wrong theme.
+  (function () {
+    var t;
+    try { t = localStorage.getItem('portfolio-theme'); } catch (e) {}
+    if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.dataset.theme = t;
+    document.documentElement.style.colorScheme = t;
+  })();
+</script>
+<link rel="stylesheet" href="css/reveal.css">
+<script>
+  // Hide reveal targets before first paint, unless motion is reduced.
+  // If reveal.js never runs, show everything after 2.5s.
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.classList.add('cs-reveal');
+    setTimeout(() => { if (!window.__csReveal) document.documentElement.classList.remove('cs-reveal'); }, 2500);
+  }
+</script>
+</head>
+<body class="cs">
+  <main class="cs-main">
+    <header class="cs-hero">
+      <p class="cs-tag">Case studies</p>
+      <h1 class="cs-title">Selected work.</h1>
+      <!-- Filled from SITE.projects in js/site.js -->
+      <ul class="cs-index" id="cs-index"></ul>
+    </header>
+  </main>
+
+  <script src="js/site.js"></script>
+  <script src="js/site-nav.js"></script>
+  <script src="js/reveal.js"></script>
+  <script>
+    const list = document.getElementById('cs-index');
+    (window.SITE?.projects || []).forEach((p) => {
+      const a = document.createElement('a');
+      a.href = p.href;
+      a.append(p.title, Object.assign(document.createElement('span'), { textContent: '→' }));
+      const li = document.createElement('li');
+      li.append(a);
+      list.append(li);
+    });
+  </script>
+</body>
+</html>

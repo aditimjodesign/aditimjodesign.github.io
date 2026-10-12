@@ -1,0 +1,63 @@
+/* Beyond page: two image grids. Every tile has a fixed grid cell and
+   object-fit: cover, so nothing is clipped by its container or overlaps
+   another tile at any width. Wide tiles span two columns. */
+
+.bx-prompt {
+  margin: 0 0 16px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: hsl(var(--cs-body));
+  letter-spacing: normal;
+}
+
+.bx-collage,
+.bx-trek {
+  width: min(1040px, calc(100vw - 32px));
+  margin: 0 0 0 50%;
+  /* transform, not translate: the reveal animation owns translate */
+  transform: translateX(-50%);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-flow: dense;
+  gap: 12px;
+}
+
+.bx-collage { grid-auto-rows: clamp(150px, 20vw, 240px); }
+.bx-trek { grid-auto-rows: clamp(130px, 17vw, 200px); margin-top: 32px; }
+
+.bx-tile {
+  margin: 0;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  background: hsl(var(--cs-panel));
+}
+
+.bx-tile img,
+.bx-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bx-photo {
+  min-height: 0;
+  border-radius: 10px;
+}
+
+.bx-tile--wide,
+.bx-photo--wide { grid-column: span 2; }
+.bx-photo--feature { grid-column: span 2; grid-row: span 2; }
+
+@media (max-width: 700px) {
+  .bx-collage,
+  .bx-trek {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .bx-collage { grid-auto-rows: clamp(150px, 42vw, 220px); }
+  .bx-trek { grid-auto-rows: clamp(120px, 34vw, 180px); }
+  .bx-tile--wide:nth-child(n + 7) { grid-column: span 1; }
+}

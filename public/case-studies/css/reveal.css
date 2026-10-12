@@ -1,0 +1,36 @@
+/* Load and scroll reveal for case study pages (js/reveal.js).
+   Only active while <html> has .cs-reveal, which the inline head script sets
+   unless the visitor prefers reduced motion. Uses the standalone translate and
+   scale properties so it never fights the transform that centres .cs-media.
+   Per-element differences only set variables, so they never lose a
+   specificity fight with the shared rules. */
+
+/* hidden from first paint: the same elements js/reveal.js marks */
+.cs-reveal :is(.cs-hero > *, .cs-cover .ui-row, .cs-cover .badge, .cs-section > *, .cs-pager, .cs-footer, .cs-dock-bar, .site-logo, .cs-side) {
+  transition:
+    opacity var(--reveal-fade, .8s) ease,
+    translate var(--reveal-dur, 1.1s) var(--reveal-ease, var(--ease-out-expo)),
+    scale var(--reveal-dur, 1.1s) var(--reveal-ease, var(--ease-out-expo));
+  transition-delay: var(--reveal-delay, 0s);
+}
+
+.cs-reveal :is(.cs-hero > *, .cs-cover .ui-row, .cs-cover .badge, .cs-section > *, .cs-pager, .cs-footer, .cs-dock-bar, .site-logo, .cs-side):not(.is-in) {
+  opacity: 0;
+  translate: 0 var(--reveal-y, 20px);
+  scale: var(--reveal-scale, 1);
+}
+
+/* the nav drops in from above */
+:is(.cs-dock-bar, .site-logo, .cs-side) { --reveal-y: -24px; }
+
+/* the cover's rows rise less */
+.cs-cover .ui-row { --reveal-y: 10px; }
+
+/* the cover's badges pop in with a little overshoot */
+.cs-cover .badge {
+  --reveal-y: 0;
+  --reveal-scale: .6;
+  --reveal-fade: .3s;
+  --reveal-dur: .5s;
+  --reveal-ease: cubic-bezier(.34, 1.56, .64, 1);
+}
