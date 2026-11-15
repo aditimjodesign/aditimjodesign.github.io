@@ -156,7 +156,7 @@ function PhotoCard({
     >
       <div
         className={cn(
-          "overflow-hidden rounded-xl",
+          "overflow-hidden rounded-2xl",
           member.image && !loaded && "skeleton",
           !member.image && "flex items-center justify-center border border-[var(--border-color)] bg-[var(--surface-subtle)] p-3",
           className,

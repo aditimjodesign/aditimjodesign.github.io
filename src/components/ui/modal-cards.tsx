@@ -156,9 +156,6 @@ export default function ModalCards({
                 <p className="modal-card-meta">{[card.role, card.context].filter(Boolean).join(" · ")}</p>
               )}
               <h3 className="modal-card-title">{card.title}</h3>
-              {card.description && (
-                <p className="modal-card-description">{card.description}</p>
-              )}
               {card.outcome && <p className="modal-card-outcome">{card.outcome}</p>}
             </div>
           </motion.article>

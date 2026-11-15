@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Terms · Aditi Manish Joshi</title>
 <meta name="description" content="Terms for using Aditi Manish Joshi&#x27;s portfolio: ownership of the work, links to other organisations and how to get in touch.">
 <link rel="icon" href="/favicon.png" type="image/png">
@@ -28,6 +28,8 @@
     if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     document.documentElement.dataset.theme = t;
     document.documentElement.style.colorScheme = t;
+    // browser chrome and status bar take the page colour
+    var m = document.querySelector('meta[name="theme-color"]') || document.head.appendChild(Object.assign(document.createElement('meta'), { name: 'theme-color' })); m.content = t === 'dark' ? '#080b0c' : '#ffffff';
   })();
 </script>
 </head>

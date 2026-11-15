@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Enterprise AI Coding Agent · Aditi Manish Joshi</title>
 <meta name="description" content="MSc HCI capstone with IBM: interviews with designers, developers and content designers turned into design frameworks for an enterprise AI coding agent.">
 <link rel="icon" href="/favicon.png" type="image/png">
@@ -28,6 +28,8 @@
     if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     document.documentElement.dataset.theme = t;
     document.documentElement.style.colorScheme = t;
+    // browser chrome and status bar take the page colour
+    var m = document.querySelector('meta[name="theme-color"]') || document.head.appendChild(Object.assign(document.createElement('meta'), { name: 'theme-color' })); m.content = t === 'dark' ? '#080b0c' : '#ffffff';
   })();
 </script>
 <link rel="stylesheet" href="css/reveal.css">
@@ -122,30 +124,22 @@
       <h3 class="cs-sub">From themes to features</h3>
       <p>Each theme went through the same three steps: anchor it to what participants said, split it into specific moments, then test every feature against a precise complaint before it reached the workshop.</p>
       <figure class="cs-media cs-media--proc" data-no-zoom>
-        <div class="proc" data-process>
-          <p class="proc__title">From Themes to Features: The Design Process</p>
-          <p class="proc__sub">Each feature set was derived through a structured process:</p>
-          <ol class="proc__steps">
-          <li class="proc__step is-active" style="--tone:#b9b2e3">
-            <button class="proc__node" type="button" id="proc-node-1" aria-expanded="true" aria-controls="proc-body-1"><b>Anchor in theme</b><span>Reframed as an HMW</span></button>
-            <span class="proc__link" aria-hidden="true"></span>
-            <div class="proc__body" id="proc-body-1" role="region" aria-labelledby="proc-node-1"><div><p class="proc__h">Anchor in theme</p><p>Confidence-Aware Transparency and AI-Generated Code Attribution both trace to Human Oversight Safeguards Enterprise Trust (PS2, PS11); Agentic Reasoning Transparency traces to the same theme but targets AI’s process rather than its output; Contextual Onboarding Assistant traces to AI as an Enterprise Knowledge Partner (PS1, PS9).</p></div></div>
-          </li>
-          <li class="proc__step" style="--tone:#b7e3b3">
-            <button class="proc__node" type="button" id="proc-node-2" aria-expanded="false" aria-controls="proc-body-2"><b>Decompose</b><span>Sub Problem to Pattern</span></button>
-            <span class="proc__link" aria-hidden="true"></span>
-            <div class="proc__body" id="proc-body-2" role="region" aria-labelledby="proc-node-2"><div><p class="proc__h">Decompose</p><p>Each HMW split into the specific moments a pain point surfaces like Confidence-Aware Transparency alone became four features (confidence badge, source attribution toggle, review checklist panel, honest refusal state) rather than one generic “trust indicator,” each mapped to a pattern enterprise users already recognise (a gutter mark and PR summary, borrowed from version control, for AI-Generated Code Attribution).</p></div></div>
-          </li>
-          <li class="proc__step" style="--tone:#e3c4ad">
-            <button class="proc__node" type="button" id="proc-node-3" aria-expanded="false" aria-controls="proc-body-3"><b>Stress Test</b><span>Evidence + Workshop</span></button>
-            <div class="proc__body" id="proc-body-3" role="region" aria-labelledby="proc-node-3"><div><p class="proc__h">Stress Test</p><p>Every feature was checked against a specific precise complaint like the Tiered Permission Dial answers PS2’s “nothing touches production without going through a human in the loop” then prioritised into core versus secondary before being validated with IBM stakeholders in the Workshop.</p></div></div>
-          </li>
+        <div class="flow">
+          <p class="flow__title">From themes to features</p>
+          <ol class="flow__steps">
+            <li class="flow__step" style="--tone:#b9b2e3">
+              <div class="flow__node"><b>1. Anchor in theme</b><span>Reframed as an HMW</span></div>
+              <p>Each feature traces back to a theme from the interviews, such as Human Oversight Safeguards Enterprise Trust (PS2, PS11).</p>
+            </li>
+            <li class="flow__step" style="--tone:#b7e3b3">
+              <div class="flow__node"><b>2. Decompose</b><span>Sub-problem to pattern</span></div>
+              <p>Each HMW is split into the moments a pain point shows up. Confidence-Aware Transparency became four features, not one generic trust indicator.</p>
+            </li>
+            <li class="flow__step" style="--tone:#e3c4ad">
+              <div class="flow__node"><b>3. Stress test</b><span>Evidence + workshop</span></div>
+              <p>Every feature is checked against a specific complaint, prioritised, then validated with IBM stakeholders in the workshop.</p>
+            </li>
           </ol>
-          <div class="proc__controls">
-            <button class="proc__btn" type="button" data-proc="prev">Previous step</button>
-            <p class="proc__count" aria-live="polite">Step 1 of 3</p>
-            <button class="proc__btn" type="button" data-proc="next">Next step</button>
-          </div>
         </div>
       </figure>
     </section>
@@ -167,7 +161,7 @@
       <figure class="cs-media">
         <img src="images/ibm-confidence-badge.webp" width="1474" height="810" loading="lazy" decoding="async" data-fig="ibm-confidence-badge">
       </figure>
-      <p class="cs-caption">The same pattern in the prototype: a badge on every block, a source note on hover, and publishing blocked until flagged items are reviewed.</p>
+      <p class="cs-caption">The same pattern in the wireframe: a badge on every block, a source note on hover, and publishing blocked until flagged items are reviewed.</p>
 
       <h3 class="cs-sub">Agentic transparency layer</h3>
       <p>The agent's steps can be opened when someone wants to know why it acted, and stay out of the way when they don't.</p>
@@ -189,10 +183,44 @@
         <img src="images/ibm-onboarding-tablet.webp" width="656" height="455" loading="lazy" decoding="async" data-fig="ibm-onboarding-tablet">
       </figure>
       <p class="cs-caption">Language and IDE: Python and VS Code. Framework: Vanilla JS, bundled with Next.js. Hosted via OpenAI Sites.</p>
-      <figure class="cs-media cs-media--compact">
+      <figure class="cs-media cs-media--small">
         <img src="images/ibm-onboarding-flow.webp" width="1535" height="1024" loading="lazy" decoding="async" data-fig="ibm-onboarding-flow">
       </figure>
       <p class="cs-caption">First-run flow: orientation, a codebase map, key patterns and setup steps, which can be skipped at any point.</p>
+    </section>
+
+    <section class="cs-section" id="features" data-nav="Features">
+      <h2>Three features, shown in the mockups.</h2>
+      <p>These are the three features visible in the high-fidelity mockups. I built them in Figma with IBM's Carbon design system and wrote their specifications. The mockups use illustrative data, not measured results. The onboarding assistant is covered above.</p>
+
+      <h3 class="cs-sub">Feature 1: Confidence badge and uncertainty reason</h3>
+      <p>Part of Confidence-Aware Transparency, anchored in the theme "Human Oversight Safeguards Enterprise Trust" (PS2, PS11).</p>
+      <p><b>The problem:</b> Uncertain output reads like certain output, so people don't know where to look closely.</p>
+      <p><b>Designed:</b> A green, amber or red badge on each output block, with a plain-language reason for low confidence, such as no matching source, conflicting sources or an outdated source. In the mockup, a red Low Confidence badge sits above an answer that says there is no specific source and that it is based on general knowledge.</p>
+      <p><b>Design decision:</b> Scoring runs in a separate calibration layer instead of asking the model to rate its own confidence, because self-reported confidence from generative models is unreliable.</p>
+      <figure class="cs-media cs-media--bleed cs-media--small">
+        <img src="images/ibm-low-confidence.webp" width="1080" height="1080" loading="lazy" decoding="async" data-fig="ibm-low-confidence">
+      </figure>
+      <p class="cs-caption">A red Low Confidence badge, with a note that there is no specific source and the answer comes from general knowledge.</p>
+
+      <h3 class="cs-sub">Feature 2: Review checklist panel</h3>
+      <p>Part of Confidence-Aware Transparency, same theme (PS2, PS11).</p>
+      <p><b>The problem:</b> A badge tells people where to look, but nothing makes them look.</p>
+      <p><b>Designed:</b> A panel that lists every amber and red block. Publish stays locked until each one is checked off, and each item links back to the block in context. Flags carry a text label (Amber, Red) as well as colour, so they don't rely on colour alone.</p>
+      <figure class="cs-media cs-media--bleed">
+        <img src="images/ibm-review-checklist.webp" width="1478" height="1080" loading="lazy" decoding="async" data-fig="ibm-review-checklist">
+      </figure>
+      <p class="cs-caption">The review checklist in Bob's side panel. Flagged claims are marked amber or red and must be reviewed before publishing.</p>
+
+      <h3 class="cs-sub">Feature 3: AI-Generated Code Attribution</h3>
+      <p>Anchored in the same theme (PS2, PS11).</p>
+      <p><b>The problem:</b> Reviewers need to know which code the agent wrote before they approve it.</p>
+      <p><b>Designed:</b> A "Generated by Bob" mark and highlight on AI-written lines in the editor, and an AI contribution summary on the pull request showing how many changed lines Bob wrote and in which files. I borrowed both patterns from version control, because enterprise developers already know how to read them.</p>
+      <p><b>Design decision:</b> Both depend on provenance metadata that Bob writes when it generates the code, and that has to survive edits by people who aren't Bob. I rated the feature medium feasibility for that reason.</p>
+      <figure class="cs-media cs-media--bleed">
+        <img src="images/ibm-ai-contribution.webp" width="1798" height="1080" loading="lazy" decoding="async" data-fig="ibm-ai-contribution">
+      </figure>
+      <p class="cs-caption">AI-written lines are marked in the editor, and a summary shows how much of the pull request Bob generated. Prototype with illustrative data.</p>
     </section>
 
     <section class="cs-section" id="outcome" data-nav="Outcome">
@@ -208,7 +236,6 @@
   <script src="js/site.js"></script>
   <script src="js/figures.js"></script>
   <script src="js/case-study.js"></script>
-  <script src="js/process.js"></script>
   <script src="js/lightbox.js"></script>
   <script src="js/site-nav.js"></script>
   <script src="js/reveal.js"></script>

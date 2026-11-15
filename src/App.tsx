@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import aboutPortrait from "@/assets/about-portrait.webp"
 import catThinkingSticker from "@/assets/cat-thinking.webp"
 import bankingPlatformImage from "@/assets/work-banking-laptop.webp"
-import enterpriseAiImage from "@/assets/work-ai-agent-ui.webp"
+import enterpriseAiImage from "@/assets/work-ai-agent-ui.jpg"
 import transitPassesImage from "@/assets/work-transit-passes.webp"
 import infosysLogo from "@/assets/logos/infosys.svg"
 import infovisionLogo from "@/assets/logos/infovision-labs.svg"
@@ -14,10 +14,10 @@ import { Dock, DockIcon } from "@/components/ui/dock"
 import { Footerdemo } from "@/components/ui/footer-section"
 import { Pointer } from "@/components/ui/custom-cursor"
 import HoverHero from "@/components/hover-hero/HoverHero"
+import DotGrid from "@/components/ui/dot-grid"
 import ModalCards, { type CardData } from "@/components/ui/modal-cards"
 import ChecklistCard, { type ChecklistItem } from "@/components/ui/checklist-card"
 import SkillCard from "@/components/ui/skill-card"
-import TeamShowcase from "@/components/ui/team-showcase"
 import StickerCluster, { type Sticker } from "@/components/ui/sticker-cluster"
 import ToolPile, { type Tool } from "@/components/ui/tool-pile"
 import { AntigravityLogo, GeminiLogo, SimpleIconLogo } from "@/components/ui/tool-logos"
@@ -33,13 +33,13 @@ import {
 const selectedWork: CardData[] = [
   {
     id: 1,
-    title: "Enterprise AI Coding Agent",
+    title: "Designing an AI Coding Agent to Increase Enterprise Productivity",
     description: "Making an enterprise AI coding agent understandable.",
     role: "UX Researcher & Designer",
     context: "MSc capstone with IBM",
     imageUrl: enterpriseAiImage,
     textPanel: true,
-    gradientColor: "#D6336C",
+    gradientColor: "#010c36",
     href: "/case-studies/ai-coding-agent.html",
   },
   {
@@ -66,25 +66,20 @@ const selectedWork: CardData[] = [
 
 // Dock theme button: shows the mode you'd switch to
 const themeIcons = {
-  sun: "M12 4V2M12 22v-2M4.9 4.9 3.5 3.5M20.5 20.5l-1.4-1.4M4 12H2M22 12h-2M4.9 19.1l-1.4 1.4M20.5 3.5l-1.4 1.4M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z",
-  moon: "M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11Z",
+  sun: "M3 17h18M7 17a5 5 0 0 1 10 0M12 6v3M5.6 9.6l1.8 1.8M18.4 9.6l-1.8 1.8",
+  moon: "M18.5 15.2A7.2 7.2 0 0 1 8.8 5.5a7.2 7.2 0 1 0 9.7 9.7ZM16.5 5.5h.01",
 }
 
 const navigation = [
   {
     label: "Home",
     href: "#home",
-    path: "M3 10.5 12 3l9 7.5M5 9.5V21h14V9.5M9 21v-7h6v7",
-  },
-  {
-    label: "About",
-    href: "#about",
-    path: "M20 21a8 8 0 0 0-16 0M12 13a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z",
+    path: "M4 20V10.5L12 4l8 6.5V20H4ZM9.5 20v-6h5v6M16.5 7V4.5",
   },
   {
     label: "Work",
     href: "#work",
-    path: "M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 8h18v12H3V8Zm0 5h18M10 13v2h4v-2",
+    path: "M4 20l1-5L16 4l4 4L9 19l-5 1ZM14 6l4 4",
   },
   {
     label: "Beyond",
@@ -152,6 +147,11 @@ function yearRange(dates: string) {
   return !end || start === end ? (start ?? dates) : `${start} – ${end}`
 }
 
+// "August 2022 – October 2024" → "Aug 2022 – Oct 2024"; plain years stay as they are.
+function shortDates(dates: string) {
+  return dates.replace(/\b([A-Z][a-z]{2})[a-z]+(?= \d{4})/g, "$1")
+}
+
 const experience: {
   date: string
   company: string
@@ -175,25 +175,31 @@ const experience: {
   },
   {
     date: "2024-10-01",
+    company: "Freelance",
+    role: "Freelance designer",
+    dates: "October 2024 – 2026",
+    duration: "",
+    domains: [],
+  },
+  {
+    date: "2024-09-30",
     company: "WONGDOODY",
-    hideDates: true,
     image: wongdoodyLogo,
     imageAlt: "WONGDOODY logo",
     role: "Lead Experience Designer",
-    dates: "August 2022 – October 2024",
-    duration: "2 years 3 months",
+    dates: "August 2022 – September 2024",
+    duration: "2 years 2 months",
     location: "Pune District",
     domains: ["Fintech", "Education", "Logistics"],
   },
   {
     date: "2024-09-30",
     company: "Infosys",
-    hideDates: true,
     image: infosysLogo,
     imageAlt: "Infosys logo",
     role: "Lead Experience Designer",
-    dates: "August 2022 – October 2024",
-    duration: "2 years 3 months",
+    dates: "August 2022 – September 2024",
+    duration: "2 years 2 months",
     domains: ["Fintech", "Education", "Logistics"],
   },
   {
@@ -248,11 +254,16 @@ export default function App() {
     const theme = isDarkMode ? "dark" : "light"
     document.documentElement.dataset.theme = theme
     document.documentElement.style.colorScheme = theme
+    // browser chrome and status bar take the page colour
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", isDarkMode ? "#080b0c" : "#ffffff")
     window.localStorage.setItem("portfolio-theme", theme)
   }, [isDarkMode])
 
   return (
     <div className={`portfolio-page${isDarkMode ? " portfolio-page--dark" : ""}`}>
+      <div className="page-dots" aria-hidden="true">
+        <DotGrid theme={isDarkMode ? "dark" : "light"} />
+      </div>
       <Pointer name="You">
         <a className="site-logo" href="#home" aria-label="Aditi Manish Joshi, back to top">
           <span className="site-logo__mark" aria-hidden="true" />
@@ -327,20 +338,18 @@ export default function App() {
           </div>
           <div className="about-copy">
             <p>
-              The problems I like best are the messy ones: dense data, lots of user roles,
-              rules that can&apos;t be broken. I ask the inconvenient questions early, so the
-              final design doesn&apos;t need a manual.
+              I like messy problems best: dense data, lots of user roles, rules that
+              can&apos;t be broken. I ask the awkward questions early, so the final design
+              doesn&apos;t need a manual.
             </p>
             <p className="about-lead">
-              I&apos;m obsessed with one thing: people. AI just happens to be the newest
-              playground.
+              People are what I care about most. AI is the newest place I get to design
+              for them.
             </p>
             <p>
-              I explore how humans and technology can work better together. For 5+ years
-              that&apos;s meant enterprise products in fintech, logistics and education.
-              More recently it meant an MSc in
-              Human-Computer Interaction at University College Dublin, focused on
-              human-centred AI and accessibility.
+              I&apos;ve spent 5+ years on enterprise products in fintech, logistics and
+              education. Then I did an MSc in Human-Computer Interaction at University
+              College Dublin, where I focused on human-centred AI and accessibility.
             </p>
           </div>
         </section>
@@ -381,20 +390,48 @@ export default function App() {
 
         <section className="work-history" id="resume">
           <h2>Experience</h2>
-          <TeamShowcase
-            members={experience.map((job) => ({
-              id: job.company,
-              name: job.company,
-              role: job.role,
-              meta: job.hideDates ? undefined : yearRange(job.dates),
-              tags: job.domains,
-              image: job.image,
-              imageAlt: job.imageAlt,
-            }))}
-            initialCount={3}
-            showMoreText="View earlier roles"
-            showLessText="Show fewer roles"
-          />
+          <ul className="exp-list">
+            {experience.slice(0, 3).map((job) => (
+              <li className="exp-item" key={job.company}>
+                <div className="exp-head">
+                  <h3 className="exp-company">{job.company}</h3>
+                  {!job.hideDates && <p className="exp-dates">{shortDates(job.dates)}</p>}
+                </div>
+                <p className="exp-role">{job.role}</p>
+                {job.domains.length > 0 && (
+                  <ul className="exp-domains" aria-label="Domains">
+                    {job.domains.map((domain) => (
+                      <li key={domain}>{domain}</li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+          <details className="exp-more">
+            <summary>
+              <span className="exp-more__closed">View earlier roles</span>
+              <span className="exp-more__open">Show fewer roles</span>
+            </summary>
+            <ul className="exp-list">
+              {experience.slice(3).map((job) => (
+                  <li className="exp-item" key={job.company}>
+                    <div className="exp-head">
+                      <h3 className="exp-company">{job.company}</h3>
+                      {!job.hideDates && <p className="exp-dates">{shortDates(job.dates)}</p>}
+                    </div>
+                    <p className="exp-role">{job.role}</p>
+                    {job.domains.length > 0 && (
+                      <ul className="exp-domains" aria-label="Domains">
+                        {job.domains.map((domain) => (
+                          <li key={domain}>{domain}</li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+              ))}
+            </ul>
+          </details>
         </section>
       </main>
         <Footerdemo />

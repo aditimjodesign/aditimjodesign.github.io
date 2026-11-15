@@ -22,10 +22,39 @@
       // Keep the outermost items (drawings are ~105px wide) inside the section's edges
       const k = Math.min(1, (hero.clientWidth / 2 - 70) / (440 * sx / 1.24));
       const push = k < 1 ? box.height / 2 + 10 : 0;
+      const narrow = k < 1;
+      // Phones: four drawings per word, where there is free space: two beside
+      // the short first line of the headline, two beside the buttons under it.
+      const actions = hero.querySelector('.hx-actions');
+      const kicker = hero.querySelector('.hx-kicker');
+      const spot = new Map(); // item -> 'top' | 'bottom'
+      if (narrow) {
+        Object.values(layers).forEach(layer => {
+          const all = [...layer.querySelectorAll('.hx-item')];
+          const side = sign => all.filter(it => Math.sign(parseFloat(it.style.getPropertyValue('--x'))) === sign).slice(0, 2);
+          [side(-1), side(1)].forEach(([top, bottom]) => {
+            if (top) spot.set(top, 'top');
+            if (bottom) spot.set(bottom, 'bottom');
+          });
+        });
+      }
       items.forEach(it => {
         const x = parseFloat(it.style.getPropertyValue('--x')) * sx;
         const y = parseFloat(it.style.getPropertyValue('--y')) * sy;
-        const ty = k < 1 ? y * 0.5 + Math.sign(y || 1) * push : y;
+        it.classList.toggle('hx-skip', narrow && !spot.has(it));
+        if (narrow && spot.has(it) && actions) {
+          const l = it.parentElement.getBoundingClientRect();
+          const a = actions.getBoundingClientRect();
+          // up to 640px the headline is capped at 360px and opens with a short line;
+          // wider than that, the name line above it has the room instead
+          const k2 = kicker.getBoundingClientRect();
+          const topY = hero.clientWidth <= 640 ? box.top + 28 : k2.top + k2.height / 2;
+          const cy = spot.get(it) === 'top' ? topY : a.top + a.height / 2;
+          it.style.setProperty('--tx', Math.sign(x) * (hero.clientWidth / 2 - 42) + 'px');
+          it.style.setProperty('--ty', cy - l.top + 'px');
+          return;
+        }
+        const ty = narrow ? y * 0.5 + Math.sign(y || 1) * push : y;
         it.style.setProperty('--tx', x * k + 'px');
         it.style.setProperty('--ty', ty + 'px');
       });

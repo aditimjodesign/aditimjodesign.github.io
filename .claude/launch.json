@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "portfolio",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["dev", "--host", "127.0.0.1", "--port", "8451"],
+      "port": 8451
+    }
+  ]
+}

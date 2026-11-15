@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Bulk Travel Passes for Organisations · Aditi Manish Joshi</title>
 <meta name="description" content="Bulk purchasing and distribution of travel passes for universities, kiosks and retailers on a public transit network.">
 <link rel="icon" href="/favicon.png" type="image/png">
@@ -27,6 +27,8 @@
     if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     document.documentElement.dataset.theme = t;
     document.documentElement.style.colorScheme = t;
+    // browser chrome and status bar take the page colour
+    var m = document.querySelector('meta[name="theme-color"]') || document.head.appendChild(Object.assign(document.createElement('meta'), { name: 'theme-color' })); m.content = t === 'dark' ? '#080b0c' : '#ffffff';
   })();
 </script>
 <link rel="stylesheet" href="css/reveal.css">

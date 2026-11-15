@@ -10,25 +10,27 @@
         if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         document.documentElement.dataset.theme = t;
         document.documentElement.style.colorScheme = t;
+        // browser chrome and status bar take the page colour
+        var m = document.querySelector('meta[name="theme-color"]') || document.head.appendChild(Object.assign(document.createElement('meta'), { name: 'theme-color' })); m.content = t === 'dark' ? '#080b0c' : '#ffffff';
         document.documentElement.style.backgroundColor = t === 'dark' ? '#080b0c' : '#fff';
       })();
     </script>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title><!-- figma:title --></title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <!-- fonts load without blocking first paint; the system font shows until they arrive -->
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&family=Caveat:wght@500&family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&family=Caveat:wght@500&family=Outfit:wght@400;500;600;700&family=Inter:ital,wght@0,400;0,500;0,700;1,700&family=Patrick+Hand&display=swap"
       media="print"
       onload="this.media='all'"
     />
     <noscript>
       <link
         rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&family=Caveat:wght@500&family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&family=Caveat:wght@500&family=Outfit:wght@400;500;600;700&family=Inter:ital,wght@0,400;0,500;0,700;1,700&family=Patrick+Hand&display=swap"
       />
     </noscript>
     <script src="/site-footer.js" defer></script>

@@ -16,7 +16,7 @@ window.SITE = {
   projects: [
     {
       slug: 'ai-coding-agent',
-      title: 'Enterprise AI Coding Agent',
+      title: 'Designing an AI Coding Agent to Increase Enterprise Productivity',
       href: 'ai-coding-agent.html',
       back: '#work',
     },

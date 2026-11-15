@@ -30,12 +30,14 @@ site-footer { display: block; }
   width: 44px;
   height: 44px;
   place-items: center;
-  border-radius: 10px;
+  border-radius: 8px;
   color: var(--sf-ink);
   transition: background-color 160ms ease;
 }
 
-.site-footer__icon:hover { background: color-mix(in srgb, var(--sf-ink) 9%, transparent); }
+@media (hover: hover) and (pointer: fine) {
+  .site-footer__icon:hover { background: color-mix(in srgb, var(--sf-ink) 9%, transparent); }
+}
 .site-footer__icon svg { width: 22px; height: 22px; }
 
 .site-footer__status {
@@ -67,7 +69,9 @@ site-footer { display: block; }
   color: inherit;
 }
 
-.site-footer__legal a:hover { color: var(--sf-ink); }
+@media (hover: hover) and (pointer: fine) {
+  .site-footer__legal a:hover { color: var(--sf-ink); }
+}
 
 .site-footer :is(a, button):focus-visible {
   outline: 2px solid var(--sf-ink);
@@ -75,6 +79,6 @@ site-footer { display: block; }
 }
 
 @media (max-width: 760px) {
-  /* the dock sits at the bottom of the screen on phones */
-  .site-footer { padding-bottom: 120px; }
+  /* the dock sits at the bottom of the screen on phones; sides match the page's 16px gutter */
+  .site-footer { padding: 56px 16px 120px; }
 }

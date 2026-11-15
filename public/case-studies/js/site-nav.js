@@ -16,9 +16,8 @@
   const STORAGE_KEY = 'portfolio-theme';
 
   const NAV = [
-    { label: 'Home', hash: '#home', path: 'M3 10.5 12 3l9 7.5M5 9.5V21h14V9.5M9 21v-7h6v7' },
-    { label: 'About', hash: '#about', path: 'M20 21a8 8 0 0 0-16 0M12 13a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z' },
-    { label: 'Work', hash: '#work', path: 'M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 8h18v12H3V8Zm0 5h18M10 13v2h4v-2' },
+    { label: 'Home', hash: '#home', path: 'M4 20V10.5L12 4l8 6.5V20H4ZM9.5 20v-6h5v6M16.5 7V4.5' },
+    { label: 'Work', hash: '#work', path: 'M4 20l1-5L16 4l4 4L9 19l-5 1ZM14 6l4 4' },
     { label: 'Beyond', href: '/beyond.html', path: 'm8 3 4 8 5-5 5 15H2L8 3z' },
   ];
   const BASE_SIZE = 44;
@@ -71,6 +70,9 @@
   function setTheme(theme) {
     root.dataset.theme = theme;
     root.style.colorScheme = theme;
+    // browser chrome and status bar take the page colour
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.content = theme === 'dark' ? '#080b0c' : '#ffffff';
     try { localStorage.setItem(STORAGE_KEY, theme); } catch (e) { /* private mode: still switches for this page */ }
   }
 
@@ -78,8 +80,8 @@
   function buildThemeButton() {
     const dock = document.querySelector('.cs-dock');
     if (!dock) return;
-    const SUN = 'M12 4V2M12 22v-2M4.9 4.9 3.5 3.5M20.5 20.5l-1.4-1.4M4 12H2M22 12h-2M4.9 19.1l-1.4 1.4M20.5 3.5l-1.4 1.4M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z';
-    const MOON = 'M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.5 8.5 0 1 0 11 11Z';
+    const SUN = 'M3 17h18M7 17a5 5 0 0 1 10 0M12 6v3M5.6 9.6l1.8 1.8M18.4 9.6l-1.8 1.8';
+    const MOON = 'M18.5 15.2A7.2 7.2 0 0 1 8.8 5.5a7.2 7.2 0 1 0 9.7 9.7ZM16.5 5.5h.01';
     const wrap = document.createElement('span');
     wrap.className = 'cs-dock__icon';
     wrap.style.setProperty('--dock-size', `${BASE_SIZE}px`);
