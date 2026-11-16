@@ -1,6 +1,6 @@
 import { memo, useEffect, useRef } from "react"
 
-import { COPIED_MESSAGE, HERO_EMAIL, RESUME_URL } from "@/lib/site-config"
+import { COPIED_MESSAGE, HERO_EMAIL, LINKEDIN_URL, RESUME_URL } from "@/lib/site-config"
 
 import heroMarkup from "./hero.html?raw"
 import "./hero.css"
@@ -47,15 +47,11 @@ function wireActions(host: HTMLElement) {
         resume.removeAttribute("target")
       }
     } else {
-      // no link yet: a plain disabled button, not an anchor without a destination
-      const placeholder = document.createElement("button")
-      placeholder.type = "button"
-      placeholder.disabled = true
-      placeholder.className = resume.className
-      placeholder.title = "Résumé link coming soon"
-      placeholder.innerHTML = resume.innerHTML
-      placeholder.setAttribute("aria-disabled", "true")
-      resume.replaceWith(placeholder)
+      // no résumé yet: the same button opens LinkedIn, so it never sits disabled
+      resume.href = LINKEDIN_URL
+      resume.setAttribute("aria-label", "View LinkedIn profile (opens in a new tab)")
+      resume.innerHTML =
+        '<svg class="hx-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5h5v5M19 5l-8 8M11 6H6a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-5"/></svg>View LinkedIn'
     }
   }
 

@@ -761,8 +761,9 @@ a {
 .modal-card:first-child .modal-card-image { left: auto; width: 60%; object-fit: cover; object-position: center 58%; }
 .modal-card:first-child .modal-card-gradient { background: linear-gradient(to right, #010c36 0%, #010c36 36%, transparent 58%) !important; }
 @media (max-width: 760px) {
-  .modal-card:first-child .modal-card-image { left: 0; width: 100%; object-position: center 42%; }
-  .modal-card:first-child .modal-card-gradient { background: linear-gradient(to top, #010c36 0%, #010c36 30%, transparent 58%) !important; }
+  /* the image keeps the top half; role, title and outcome sit on the solid panel below it */
+  .modal-card:first-child .modal-card-image { left: 0; width: 100%; height: 52%; object-position: center 50%; }
+  .modal-card:first-child .modal-card-gradient { background: linear-gradient(to top, #010c36 0%, #010c36 50%, transparent 60%) !important; }
 }
 
 /* desktop: a wider grid, so the work uses the space instead of sitting in a narrow column */
@@ -2048,6 +2049,9 @@ a {
     margin: 0;
     transform: none;
     pointer-events: auto;
+    /* fixed over scrolling content on phones: near-solid, so card titles and
+       body text don't show through the icons */
+    background: color-mix(in srgb, var(--page-bg) 92%, transparent);
   }
 
   .hero {

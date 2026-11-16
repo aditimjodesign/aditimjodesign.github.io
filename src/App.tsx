@@ -5,7 +5,6 @@ import catThinkingSticker from "@/assets/cat-thinking.webp"
 import bankingPlatformImage from "@/assets/work-banking-laptop.webp"
 import enterpriseAiImage from "@/assets/work-ai-agent-ui.jpg"
 import transitPassesImage from "@/assets/work-transit-passes.webp"
-import infosysLogo from "@/assets/logos/infosys.svg"
 import infovisionLogo from "@/assets/logos/infovision-labs.svg"
 import initiaLogo from "@/assets/logos/initia.webp"
 import tcsLogo from "@/assets/logos/tcs.svg"
@@ -33,8 +32,9 @@ import {
 const selectedWork: CardData[] = [
   {
     id: 1,
-    title: "Designing an AI Coding Agent to Increase Enterprise Productivity",
+    title: "Making an Enterprise AI Coding Agent Understandable",
     description: "Making an enterprise AI coding agent understandable.",
+    outcome: "Three reusable frameworks for designing around an agent that isn't always right.",
     role: "UX Researcher & Designer",
     context: "MSc capstone with IBM",
     imageUrl: enterpriseAiImage,
@@ -48,6 +48,7 @@ const selectedWork: CardData[] = [
     description: "Extending a banking platform built for 300+ employee enterprises to companies of 100 or fewer.",
     role: "UX Designer",
     context: "Corporate banking platform provider",
+    outcome: "Shipped early 2024: onboarding that skips role selection for small companies.",
     imageUrl: bankingPlatformImage,
     gradientColor: "#2563EB",
     href: "/case-studies/fintech-platform.html",
@@ -58,6 +59,7 @@ const selectedWork: CardData[] = [
     description: "Bulk purchasing and distribution of travel passes for a public transit network.",
     role: "Designer, B2B track",
     context: "Public transit agency in Canada",
+    outcome: "Three platform pillars designed into a B2B platform, in development when I left.",
     imageUrl: transitPassesImage,
     gradientColor: "#059669",
     href: "/case-studies/transit-passes.html",
@@ -183,23 +185,14 @@ const experience: {
   },
   {
     date: "2024-09-30",
-    company: "WONGDOODY",
+    // WONGDOODY is Infosys's design studio: one job, one entry
+    company: "WONGDOODY (an Infosys company)",
     image: wongdoodyLogo,
     imageAlt: "WONGDOODY logo",
     role: "Lead Experience Designer",
     dates: "August 2022 – September 2024",
     duration: "2 years 2 months",
     location: "Pune District",
-    domains: ["Fintech", "Education", "Logistics"],
-  },
-  {
-    date: "2024-09-30",
-    company: "Infosys",
-    image: infosysLogo,
-    imageAlt: "Infosys logo",
-    role: "Lead Experience Designer",
-    dates: "August 2022 – September 2024",
-    duration: "2 years 2 months",
     domains: ["Fintech", "Education", "Logistics"],
   },
   {
@@ -347,9 +340,10 @@ export default function App() {
               for them.
             </p>
             <p>
-              I&apos;ve spent 5+ years on enterprise products in fintech, logistics and
-              education. Then I did an MSc in Human-Computer Interaction at University
-              College Dublin, where I focused on human-centred AI and accessibility.
+              I&apos;ve been a designer since 2021, most of that on enterprise products in
+              fintech, logistics and education. From late 2024 I freelanced alongside an
+              MSc in Human-Computer Interaction at University College Dublin, where I
+              focused on human-centred AI and accessibility.
             </p>
           </div>
         </section>

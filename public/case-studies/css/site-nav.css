@@ -4,6 +4,7 @@
 .cs {
   --dock-border: #e9ecee;
   --dock-bg: rgb(255 255 255 / 72%);
+  --dock-solid: rgb(255 255 255 / 92%);
   --dock-fill: rgb(8 11 12 / 6%);
   --dock-icon: #546e7a;
   --dock-hover: #f4f5f7;
@@ -13,6 +14,7 @@
 :root[data-theme="dark"] .cs {
   --dock-border: #2e373c;
   --dock-bg: rgb(22 28 31 / 78%);
+  --dock-solid: rgb(8 11 12 / 92%);
   --dock-fill: rgb(255 255 255 / 8%);
   --dock-icon: #b0bec5;
   --dock-hover: #161c1f;
@@ -128,6 +130,10 @@
     top: auto;
     bottom: max(16px, env(safe-area-inset-bottom));
   }
+
+  /* fixed over scrolling text on phones: near-solid, so the page doesn't show
+     through the icons */
+  .cs-dock { background: var(--dock-solid); }
 
   .cs-dock__label { top: auto; bottom: calc(100% + 10px); }
 

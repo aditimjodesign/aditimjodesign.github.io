@@ -330,7 +330,10 @@
   border: 1px solid hsl(var(--cs-line));
   font-weight: 500;
 }
-.branch__step--skip { text-decoration: line-through; color: hsl(var(--cs-quiet)); border-style: dashed; background: transparent; }
+.branch__step--skip { color: hsl(var(--cs-quiet)); border-style: dashed; background: transparent; }
+/* the struck-out step also says "skipped", so it reads without the styling */
+.branch__step--skip s { text-decoration: line-through; }
+.branch__step--skip small { margin-left: 6px; font-size: inherit; }
 .branch__arrow { color: hsl(var(--cs-body)); }
 
 /* Dashboard tiles */
