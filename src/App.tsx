@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 
 import aboutPortrait from "@/assets/about-portrait.webp"
-import catThinkingSticker from "@/assets/cat-thinking.webp"
 import bankingPlatformImage from "@/assets/work-banking-laptop.webp"
 import enterpriseAiImage from "@/assets/work-ai-agent-ui.jpg"
 import transitPassesImage from "@/assets/work-transit-passes.webp"
@@ -15,19 +14,6 @@ import { Pointer } from "@/components/ui/custom-cursor"
 import HoverHero from "@/components/hover-hero/HoverHero"
 import DotGrid from "@/components/ui/dot-grid"
 import ModalCards, { type CardData } from "@/components/ui/modal-cards"
-import ChecklistCard, { type ChecklistItem } from "@/components/ui/checklist-card"
-import SkillCard from "@/components/ui/skill-card"
-import StickerCluster, { type Sticker } from "@/components/ui/sticker-cluster"
-import ToolPile, { type Tool } from "@/components/ui/tool-pile"
-import { AntigravityLogo, GeminiLogo, SimpleIconLogo } from "@/components/ui/tool-logos"
-import {
-  siClaude,
-  siClaudecode,
-  siFigma,
-  siGooglecolab,
-  siMiro,
-  siNotion,
-} from "simple-icons"
 
 const selectedWork: CardData[] = [
   {
@@ -88,59 +74,6 @@ const navigation = [
     href: "/beyond.html",
     path: "m8 3 4 8 5-5 5 15H2L8 3z",
   },
-]
-
-// "open" drops the box behind each card so the folders sit on the page; "boxed" keeps it.
-const toolkitLayout: "open" | "boxed" = "open"
-
-// Craft and research skills in one pile, alternating the two colour families
-const skills: Sticker[] = [
-  { label: "user research & interviews", color: "#FFC83D", ink: "#4D3300", rotate: -4 },
-  { label: "interaction design", color: "#8FC8FF", ink: "#0A2E52", rotate: 3 },
-  { label: "synthesis & insight", color: "#FF9E8A", ink: "#4A1308", rotate: -2 },
-  { label: "AI interaction design", color: "#5FB0F5", ink: "#062B4D", rotate: -6 },
-  { label: "stakeholder workshops", color: "#FFE07A", ink: "#473600", rotate: 4 },
-  { label: "design systems", color: "#B9A2EF", ink: "#2A1260", rotate: -3 },
-  { label: "accessibility (WCAG)", color: "#D7C8FA", ink: "#2E1566", rotate: -2 },
-  { label: "front-end handoff (HTML/CSS)", color: "#A9BFFF", ink: "#14245C", rotate: 3 },
-]
-
-const domains: ChecklistItem[] = [
-  { label: "Fintech", done: true },
-  { label: "Human-centred AI", done: true },
-  { label: "Logistics", done: true },
-  { label: "Education", done: true },
-  { label: "Enterprise SaaS", done: true },
-  { label: "Tourism", done: true },
-  { label: "AR/VR", done: true },
-  {
-    label: "thinking…",
-    sticker: (
-      <img
-        className="checklist-sticker"
-        src={catThinkingSticker}
-        alt="Cat in glasses reading a sheet of paper"
-        width={96}
-        height={89}
-        draggable={false}
-      />
-    ),
-  },
-]
-
-const aiTools: Tool[] = [
-  { name: "Claude", logo: <SimpleIconLogo icon={siClaude} /> },
-  { name: "Gemini", logo: <GeminiLogo /> },
-  { name: "Antigravity", logo: <AntigravityLogo /> },
-  { name: "Colab", logo: <SimpleIconLogo icon={siGooglecolab} /> },
-  { name: "Claude Code", logo: <SimpleIconLogo icon={siClaudecode} /> },
-]
-
-// Figma, Miro and Notion are placeholders; swap in the tools you actually use.
-const designTools: Tool[] = [
-  { name: "Figma", logo: <SimpleIconLogo icon={siFigma} /> },
-  { name: "Miro", logo: <SimpleIconLogo icon={siMiro} /> },
-  { name: "Notion", logo: <SimpleIconLogo icon={siNotion} /> },
 ]
 
 // "August 2022 – October 2024" → "2022 – 2024"; a single year when both match.
@@ -356,30 +289,6 @@ export default function App() {
             animationVariant="scale"
             animationSpeed="normal"
           />
-        </section>
-
-        <section className="toolkit-section" id="toolkit">
-          <h2>Skills, tools &amp; domains</h2>
-          <div className={`toolkit-grid toolkit-grid--${toolkitLayout}`}>
-            <SkillCard title="Skills" tone="blue">
-              <StickerCluster stickers={skills} aria-label="Skills" />
-            </SkillCard>
-            <SkillCard title="Tools" tone="purple">
-              <div className="tool-piles">
-                <figure className="tool-pile-group">
-                  <figcaption>AI tools</figcaption>
-                  <ToolPile tools={aiTools} className="tool-stage--ai" />
-                </figure>
-                <figure className="tool-pile-group">
-                  <figcaption>Design tools</figcaption>
-                  <ToolPile tools={designTools} className="tool-stage--design" />
-                </figure>
-              </div>
-            </SkillCard>
-            <SkillCard>
-              <ChecklistCard title="Domains" items={domains} />
-            </SkillCard>
-          </div>
         </section>
 
         <section className="work-history" id="resume">

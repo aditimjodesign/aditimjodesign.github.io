@@ -766,6 +766,16 @@ a {
   .modal-card:first-child .modal-card-gradient { background: linear-gradient(to top, #010c36 0%, #010c36 50%, transparent 60%) !important; }
 }
 
+/* desktop: three equal cards in one row */
+@media (min-width: 900px) {
+  .modal-cards-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .modal-card, .modal-card:first-child { height: 420px; }
+  .modal-card:first-child { grid-column: auto; }
+  .modal-card:first-child .modal-card-image { left: 0; width: 100%; object-position: center 40%; }
+  .modal-card:first-child .modal-card-gradient { background: linear-gradient(to top, #010c36 0%, #010c36 34%, transparent 70%) !important; }
+  .modal-card:first-child .modal-card-title { font-size: 18px; }
+}
+
 /* desktop: a wider grid, so the work uses the space instead of sitting in a narrow column */
 @media (min-width: 761px) {
   .selected-work { width: min(1320px, calc(100% - 64px)); }

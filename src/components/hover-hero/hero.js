@@ -9,6 +9,18 @@
       [...hero.querySelectorAll('.hx-layer')].map(l => [l.dataset.layer, l])
     );
 
+    // Item size even before its image has loaded (the drawings load lazily)
+    function dims(it) {
+      let w = it.offsetWidth, h = it.offsetHeight;
+      const img = it.querySelector('img');
+      if (img && (!w || !h)) {
+        const ratio = (+img.getAttribute('width') || 1) / (+img.getAttribute('height') || 1);
+        h = parseFloat(getComputedStyle(img).height) || 92;
+        w = h * ratio;
+      }
+      return [w || 60, h || 60];
+    }
+
     // On narrow screens, squeeze the scatter horizontally and push it
     // vertically away from the headline so items never cover the text.
     function fit() {
@@ -21,8 +33,9 @@
       const sy = Math.max(1, box.height / 84) * 1.24;
       // Keep the outermost items (drawings are ~105px wide) inside the section's edges
       const k = Math.min(1, (hero.clientWidth / 2 - 70) / (440 * sx / 1.24));
-      const push = k < 1 ? box.height / 2 + 10 : 0;
-      const narrow = k < 1;
+      // phones and small tablets use the compact layout below; everything wider uses the side zones
+      const narrow = hero.clientWidth <= 760;
+      const push = narrow ? box.height / 2 + 10 : 0;
       // Phones: four drawings per word, where there is free space: two beside
       // the short first line of the headline, two beside the buttons under it.
       const actions = hero.querySelector('.hx-actions');
@@ -35,6 +48,38 @@
           [side(-1), side(1)].forEach(([top, bottom]) => {
             if (top) spot.set(top, 'top');
             if (bottom) spot.set(bottom, 'bottom');
+          });
+        });
+      }
+      // Wide screens: each layer's drawings are packed into a grid in the open
+      // space just outside the headline's two ends, so none overlap and none sit
+      // on the words or out at the section's edges.
+      const packed = new Map();
+      if (!narrow) {
+        Object.values(layers).forEach(layer => {
+          const l = layer.getBoundingClientRect();
+          const bx = box.left + box.width / 2 - l.left;
+          const by = box.top + box.height / 2 - l.top;
+          const space = hero.clientWidth / 2 - box.width / 2 - 24;
+          [-1, 1].forEach(side => {
+            const list = [...layer.querySelectorAll('.hx-item')]
+              .filter(it => Math.sign(parseFloat(it.style.getPropertyValue('--x'))) === side)
+              .sort((p, q) => parseFloat(p.style.getPropertyValue('--y')) - parseFloat(q.style.getPropertyValue('--y')));
+            if (!list.length) return;
+            const GAP = 14;
+            const wide = Math.max(...list.map(it => dims(it)[0]));
+            const cols = space >= 2 * wide + GAP + 22 ? 2 : 1;
+            const rows = Math.ceil(list.length / cols);
+            const rowH = Math.max(...list.map(it => dims(it)[1])) + GAP;
+            const top = by - (rows * rowH) / 2;
+            const edge = box.width / 2 + 22;
+            list.forEach((it, i) => {
+              const r = Math.floor(i / cols), c = i % cols;
+              const iw = dims(it)[0];
+              // the first column hugs the headline; the second sits beyond it
+              const x = edge + (c === 0 ? iw / 2 : wide + GAP + iw / 2);
+              packed.set(it, [bx + side * x, top + r * rowH + rowH / 2]);
+            });
           });
         });
       }
@@ -54,7 +99,15 @@
           it.style.setProperty('--ty', cy - l.top + 'px');
           return;
         }
-        const ty = narrow ? y * 0.5 + Math.sign(y || 1) * push : y;
+        if (!narrow) {
+          const pos = packed.get(it);
+          if (pos) {
+            it.style.setProperty('--tx', pos[0] + 'px');
+            it.style.setProperty('--ty', pos[1] + 'px');
+          }
+          return;
+        }
+        const ty = y * 0.5 + Math.sign(y || 1) * push;
         it.style.setProperty('--tx', x * k + 'px');
         it.style.setProperty('--ty', ty + 'px');
       });
@@ -97,6 +150,7 @@
       t.addEventListener('click', () => activate(t.classList.contains('hx-is-active') ? null : t));
     });
 
+    hero.querySelectorAll('img').forEach(img => img.addEventListener('load', fit));
     new ResizeObserver(fit).observe(hero);
     fit();
     if (document.fonts) document.fonts.ready.then(fit);
